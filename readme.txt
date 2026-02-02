@@ -39,7 +39,7 @@ This plugin uses the OpenStreetMap Nominatim API for address geocoding. The serv
 This plugin uses modern JavaScript tooling to build its admin and frontend assets.
 
 The complete, human-readable source code for all JavaScript and CSS files included in this plugin is publicly available and maintained at:
-https://github.com/flexatech/flexatech-plugin
+https://github.com/flexatech/retailers-management-for-woocommerce
 
 Detailed and up-to-date build instructions for both admin and frontend assets are documented in the repository README.
 
