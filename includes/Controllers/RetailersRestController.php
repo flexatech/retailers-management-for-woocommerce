@@ -113,13 +113,13 @@ class RetailersRestController extends BaseRestController {
      * @return WP_REST_Response The response object.
      */
     public function index( \WP_REST_Request $request ): \WP_REST_Response {
-
-        $page     = max( 1, (int) ( $request->get_param( 'page' ) ?? 1 ) );
-        $per_page = (int) ( $request->get_param( 'per_page' ) ?? RetailerHelper::RETAILER_PER_PAGE );
-        $keyword  = $request->get_param( 'kw' );
+        $page     = max( 1, absint( $request->get_param( 'page' ) ?? 1 ) );
+        $per_page = absint( $request->get_param( 'per_page' ) ?? RetailerHelper::RETAILER_PER_PAGE );
+        $per_page = $per_page > 0 ? min( $per_page, RetailerHelper::RETAILER_MAX_PER_PAGE ) : RetailerHelper::RETAILER_PER_PAGE;
+        $keyword  = is_string( $request->get_param( 'kw' ) ) ? sanitize_text_field( $request->get_param( 'kw' ) ) : '';
         $status   = $request->get_param( 'status' );
-        // Get all retailers by active status
-        $is_active = filter_var( $request->get_param( 'active' ) ?? false, FILTER_VALIDATE_BOOLEAN );
+        $status   = in_array( $status, [ 'all', '1', '0' ], true ) ? $status : 'all';
+        $is_active = rest_sanitize_boolean( $request->get_param( 'active' ) ?? false );
         if ( $is_active ) {
             $data = RetailerHelper::get_all_retailers_by_active_status();
             return $this->success( $data, __( 'Retailers fetched successfully', 'retailers-management-for-woocommerce' ) );
@@ -132,18 +132,15 @@ class RetailersRestController extends BaseRestController {
             'paged'          => $page,
         ];
 
-        if ( ! empty( $keyword ) ) {
+        if ( '' !== $keyword ) {
             $args['s'] = $keyword;
         }
 
-        /**
-         * Filter by status (post meta)
-         */
-        if ( null !== $status && 'all' !== $status ) {
+        if ( 'all' !== $status ) {
             $args['meta_query'] = [
                 [
                     'key'     => RetailerHelper::RETAILER_META_STATUS,
-                    'value'   => (int) $status,
+                    'value'   => '1' === $status ? '1' : '0',
                     'compare' => '=',
                 ],
             ];
@@ -255,7 +252,7 @@ class RetailersRestController extends BaseRestController {
             return $this->error( $post_id->get_error_message(), 400 );
         }
 
-        $status = (bool) $request->get_param( 'status' ) ?? true;
+        $status = rest_sanitize_boolean( $request->get_param( 'status' ) ?? true );
 
         /**
         * Retailer Type (taxonomy)
@@ -273,11 +270,11 @@ class RetailersRestController extends BaseRestController {
             }
         }
 
-        update_post_meta( $post_id, RetailerHelper::RETAILER_META_ADDRESS, sanitize_text_field( $request->get_param( 'address' ) ) );
-        update_post_meta( $post_id, RetailerHelper::RETAILER_META_LATITUDE, sanitize_text_field( $request->get_param( 'latitude' ) ) );
-        update_post_meta( $post_id, RetailerHelper::RETAILER_META_LONGITUDE, sanitize_text_field( $request->get_param( 'longitude' ) ) );
-        update_post_meta( $post_id, RetailerHelper::RETAILER_META_PHONE, sanitize_text_field( $request->get_param( 'phone' ) ) );
-        update_post_meta( $post_id, RetailerHelper::RETAILER_META_EMAIL, sanitize_email( $request->get_param( 'email' ) ) );
+        update_post_meta( $post_id, RetailerHelper::RETAILER_META_ADDRESS, sanitize_text_field( (string) ( $request->get_param( 'address' ) ?? '' ) ) );
+        update_post_meta( $post_id, RetailerHelper::RETAILER_META_LATITUDE, sanitize_text_field( (string) ( $request->get_param( 'latitude' ) ?? '' ) ) );
+        update_post_meta( $post_id, RetailerHelper::RETAILER_META_LONGITUDE, sanitize_text_field( (string) ( $request->get_param( 'longitude' ) ?? '' ) ) );
+        update_post_meta( $post_id, RetailerHelper::RETAILER_META_PHONE, sanitize_text_field( (string) ( $request->get_param( 'phone' ) ?? '' ) ) );
+        update_post_meta( $post_id, RetailerHelper::RETAILER_META_EMAIL, sanitize_email( (string) ( $request->get_param( 'email' ) ?? '' ) ) );
         update_post_meta( $post_id, RetailerHelper::RETAILER_META_STATUS, $status );
         update_post_meta( $post_id, RetailerHelper::RETAILER_META_LOGO, sanitize_text_field( $request->get_param( 'logo' ) ?? '' ) );
         update_post_meta( $post_id, RetailerHelper::RETAILER_META_ECOMMERCE_URL, sanitize_text_field( $request->get_param( 'ecommerceUrl' ) ?? '' ) );
@@ -304,7 +301,7 @@ class RetailersRestController extends BaseRestController {
      * @return WP_REST_Response The response object.
      */
     public function get( \WP_REST_Request $request ): \WP_REST_Response {
-        $id = (int) $request->get_param( 'retailerId' );
+        $id = absint( $request->get_param( 'retailerId' ) );
         if ( ! $id ) {
             return $this->error( __( 'Missing retailer id', 'retailers-management-for-woocommerce' ) );
         }
@@ -406,8 +403,7 @@ class RetailersRestController extends BaseRestController {
      * @return WP_REST_Response The response object.
      */
     public function update( \WP_REST_Request $request ): \WP_REST_Response {
-
-        $id = (int) $request->get_param( 'retailerId' );
+        $id = absint( $request->get_param( 'retailerId' ) );
 
         if ( ! $id ) {
             return $this->error( __( 'Missing retailer id', 'retailers-management-for-woocommerce' ) );
@@ -430,15 +426,11 @@ class RetailersRestController extends BaseRestController {
         $post_args = [ 'ID' => $id ];
 
         if ( $request->has_param( 'name' ) ) {
-            $post_args['post_title'] = sanitize_text_field(
-                $request->get_param( 'name' )
-            );
+            $post_args['post_title'] = sanitize_text_field( (string) ( $request->get_param( 'name' ) ?? '' ) );
         }
 
         if ( $request->has_param( 'description' ) ) {
-            $post_args['post_content'] = sanitize_textarea_field(
-                $request->get_param( 'description' )
-            );
+            $post_args['post_content'] = sanitize_textarea_field( (string) ( $request->get_param( 'description' ) ?? '' ) );
         }
 
         if ( count( $post_args ) > 1 ) {
@@ -479,7 +471,7 @@ class RetailersRestController extends BaseRestController {
                         break;
 
                     case 'email':
-                        $value = sanitize_email( $value );
+                        $value = sanitize_email( (string) ( $value ?? '' ) );
                         break;
 
                     case 'latitude':
@@ -488,7 +480,7 @@ class RetailersRestController extends BaseRestController {
                         break;
 
                     default:
-                        $value = sanitize_text_field( $value );
+                        $value = sanitize_text_field( (string) ( $value ?? '' ) );
                 }
 
                 update_post_meta( $id, $meta_key, $value );
@@ -501,7 +493,7 @@ class RetailersRestController extends BaseRestController {
          * -------------------------------------------------------
          */
         if ( $request->has_param( 'type' ) ) {
-            $type_id = (int) $request->get_param( 'type' );
+            $type_id = absint( $request->get_param( 'type' ) );
 
             wp_set_object_terms(
                 $id,
@@ -569,7 +561,7 @@ class RetailersRestController extends BaseRestController {
      * @return WP_REST_Response The response object.
      */
     public function destroy( \WP_REST_Request $request ): \WP_REST_Response {
-        $id = (int) $request->get_param( 'retailerId' );
+        $id = absint( $request->get_param( 'retailerId' ) );
         if ( ! $id ) {
             return $this->error( __( 'Missing retailer id', 'retailers-management-for-woocommerce' ) );
         }
@@ -606,8 +598,9 @@ class RetailersRestController extends BaseRestController {
      */
     public function bulk_delete( \WP_REST_Request $request ): \WP_REST_Response {
         $ids = $request->get_param( 'ids' );
+        $ids = is_array( $ids ) ? array_map( 'absint', array_filter( $ids, 'is_numeric' ) ) : [];
 
-        if ( ! is_array( $ids ) || empty( $ids ) ) {
+        if ( empty( $ids ) ) {
             return $this->error(
                 __( 'Missing retailer ids', 'retailers-management-for-woocommerce' ),
                 400
@@ -618,7 +611,7 @@ class RetailersRestController extends BaseRestController {
         $failed_ids  = [];
 
         foreach ( $ids as $id ) {
-            $id = (int) $id;
+            $id = absint( $id );
 
             if ( ! $id ) {
                 $failed_ids[] = $id;
@@ -658,9 +651,10 @@ class RetailersRestController extends BaseRestController {
      */
     public function bulk_update_status( \WP_REST_Request $request ): \WP_REST_Response {
         $ids    = $request->get_param( 'ids' );
+        $ids    = is_array( $ids ) ? array_map( 'absint', array_filter( $ids, 'is_numeric' ) ) : [];
         $status = $request->get_param( 'status' );
 
-        if ( ! is_array( $ids ) || empty( $ids ) ) {
+        if ( empty( $ids ) ) {
             return $this->error(
                 __( 'Missing retailer ids', 'retailers-management-for-woocommerce' ),
                 400
@@ -674,13 +668,13 @@ class RetailersRestController extends BaseRestController {
             );
         }
 
-        $status = (bool) $status;
+        $status = rest_sanitize_boolean( $status );
 
         $updated_ids = [];
         $failed_ids  = [];
 
         foreach ( $ids as $id ) {
-            $id = (int) $id;
+            $id = absint( $id );
 
             if ( ! $id ) {
                 $failed_ids[] = $id;

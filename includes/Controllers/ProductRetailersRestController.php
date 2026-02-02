@@ -55,7 +55,7 @@ class ProductRetailersRestController extends BaseRestController {
      * @return WP_REST_Response The response object.
      */
     public function get_product_retailers( WP_REST_Request $request ): WP_REST_Response {
-        $product_id = (int) $request->get_param( 'productId' );
+        $product_id = absint( $request->get_param( 'productId' ) );
 
         if ( ! $product_id || ! get_post( $product_id ) ) {
             return $this->error( __( 'Invalid product ID', 'retailers-management-for-woocommerce' ), 404 );
@@ -77,7 +77,7 @@ class ProductRetailersRestController extends BaseRestController {
      * @return WP_REST_Response The response object.
      */
     public function save_product_retailers( WP_REST_Request $request ): WP_REST_Response {
-        $product_id = (int) $request->get_param( 'productId' );
+        $product_id = absint( $request->get_param( 'productId' ) );
 
         if ( ! $product_id || ! get_post( $product_id ) ) {
             return $this->error( __( 'Invalid product ID', 'retailers-management-for-woocommerce' ), 404 );
@@ -89,7 +89,8 @@ class ProductRetailersRestController extends BaseRestController {
             return $this->error( __( 'Invalid retailers data', 'retailers-management-for-woocommerce' ) );
         }
 
-        // Save to product meta
+        $retailers = ProductRetailersHelper::sanitize_product_retailers( $retailers );
+
         update_post_meta( $product_id, ProductRetailersHelper::PRODUCT_RETAILERS_META_KEY, $retailers );
 
         return $this->success(

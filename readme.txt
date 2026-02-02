@@ -77,6 +77,10 @@ The plugin uses OpenStreetMap's Nominatim geocoding service to help you find and
 
 == Changelog ==
 
+= 1.0.2 =
+* Fixed: Correct Contributors
+* Fixed: Missing permission_callback in REST API Route
+
 = 1.0.1 =
 * Security: Added comprehensive input sanitization for all REST API endpoints
 * Security: Fixed settings and product retailers data sanitization
