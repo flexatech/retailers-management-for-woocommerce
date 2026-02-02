@@ -1,0 +1,15 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Store -->
+  <rect x="8" y="20" width="34" height="20" rx="2" fill="#1F2937"></rect>
+  <rect x="12" y="24" width="8" height="8" rx="1" fill="#FFFFFF"></rect>
+  <rect x="22" y="24" width="8" height="8" rx="1" fill="#FFFFFF"></rect>
+  <rect x="32" y="24" width="6" height="16" rx="1" fill="#FFFFFF"></rect>
+
+  <!-- Store roof -->
+  <path d="M6 20L25 8L44 20H6Z" fill="#374151"></path>
+
+  <!-- Users -->
+  <circle cx="18" cy="14" r="3" fill="#FFFFFF"></circle>
+  <circle cx="25" cy="13" r="3" fill="#FFFFFF"></circle>
+  <circle cx="32" cy="14" r="3" fill="#FFFFFF"></circle>
+</svg>

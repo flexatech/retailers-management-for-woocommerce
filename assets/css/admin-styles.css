@@ -1,0 +1,316 @@
+/* Product Retailers Tab Styles */
+
+.product-retailers-tab {
+  padding: 20px;
+}
+
+.retailers-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  flex-wrap: wrap;
+}
+
+.retailers-toolbar .add-retailer-btn {
+  background: #2271b1;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.retailers-toolbar .add-retailer-btn:hover {
+  background: #135e96;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toolbar-actions .select-all-label {
+  margin: 0;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.bulk-actions-trigger {
+  min-width: 120px;
+}
+
+.apply-btn {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.toolbar-links {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.toolbar-links .link-button {
+  background: none;
+  border: none;
+  color: #2271b1;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+}
+
+.toolbar-links .link-button:hover {
+  color: #135e96;
+  text-decoration: underline;
+}
+
+.toolbar-links .separator {
+  color: #ccc;
+}
+
+.retailers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.retailer-card {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  transition: all 0.2s;
+}
+
+.retailer-card.dragging {
+  opacity: 0.5;
+}
+
+.retailer-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 15px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.retailer-card-header:hover {
+  background: #f9f9f9;
+}
+
+.retailer-card-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.drag-handle {
+  cursor: grab;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.retailer-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.retailer-name {
+  font-weight: 500;
+  font-size: 14px;
+  color: #1d2327;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.badge-instock {
+  background: #00a32a;
+  color: white;
+}
+
+.badge-best-price {
+  background: #2271b1;
+  color: white;
+}
+
+.retailer-price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  font-size: 14px;
+}
+
+.price-regular {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.price-current {
+  font-weight: 600;
+  color: #1d2327;
+}
+
+.retailer-card-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 15px;
+}
+
+.retailer-card-header-right svg {
+  color: #666;
+  cursor: pointer;
+}
+
+.retailer-card-header-right svg:hover {
+  color: #d63638;
+}
+
+.delete-icon {
+  color: #d63638;
+}
+
+.retailer-card-content {
+  padding: 20px 15px;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+}
+
+.form-field {
+  margin-bottom: 15px;
+}
+
+.form-field:last-child {
+  margin-bottom: 0;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 13px;
+  color: #1d2327;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.retailer-name-display {
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 13px;
+  color: #1d2327;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon input {
+  padding-right: 35px;
+}
+
+.external-link-icon {
+  position: absolute;
+  right: 10px;
+  color: #2271b1;
+  cursor: pointer;
+}
+
+.external-link-icon:hover {
+  color: #135e96;
+}
+
+.switch-container {
+  display: flex;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.retailers-footer {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+/* WooCommerce panel adjustments */
+#retailers_product_data.panel {
+  padding: 0;
+}
+
+#retailers_product_data .product-retailers-tab {
+  padding: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 782px) {
+  .form-row.two-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .retailers-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .toolbar-links {
+    margin-left: 0;
+    width: 100%;
+  }
+}

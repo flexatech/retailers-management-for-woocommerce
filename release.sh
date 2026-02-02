@@ -1,0 +1,61 @@
+PLUGIN_SLUG="retailers-management-for-woocommerce-pro"
+PROJECT_PATH=$(pwd)
+BUILD_PATH="${PROJECT_PATH}/build"
+DEST_PATH="$BUILD_PATH/$PLUGIN_SLUG"
+
+echo "Generating build directory..."
+rm -rf "$BUILD_PATH"
+mkdir -p "$DEST_PATH"
+
+#
+# 1) Build Admin App
+#
+echo "Installing Admin App dependencies..."
+cd "$PROJECT_PATH/apps/admin"
+pnpm install
+echo "Running JS Build..."
+pnpm build
+cd "$PROJECT_PATH"
+
+#
+# 2) Build Frontend App
+#
+echo "Installing Frontend App dependencies..."
+cd "$PROJECT_PATH/apps/frontend"
+pnpm install
+echo "Running Frontend App JS Build..."
+pnpm build
+cd "$PROJECT_PATH"
+
+#
+# 3) Copy files
+#
+echo "Syncing files..."
+rsync -rc --exclude-from="$PROJECT_PATH/.distignore" "$PROJECT_PATH/" "$DEST_PATH/" --delete --delete-excluded
+
+#
+# 4) Run code formatter if tools directory exists before running lint
+#
+if [ -d "$PROJECT_PATH/tools" ]; then
+    echo "Running PHP Code Beautifier..."
+    cd "$PROJECT_PATH/tools"
+    composer run cbf ../build
+    cd "$PROJECT_PATH"
+fi
+
+#
+# 5) Remove development-only code
+#
+sed -i "" "/FLEXA_RETAILERS_MANAGEMENT_IS_DEVELOPMENT/d" "$DEST_PATH/retailers-management-for-woocommerce.php"
+rm -rf "$DEST_PATH/includes/Engine/Register/RegisterDev.php"
+
+#
+# 6) Generate ZIP
+#
+echo "Generating zip file..."
+cd "$BUILD_PATH" || exit
+zip -q -r "${PLUGIN_SLUG}.zip" "$PLUGIN_SLUG/"
+rm -rf "$PLUGIN_SLUG"
+echo "${PLUGIN_SLUG}.zip file generated!"
+
+echo "Build done!"
