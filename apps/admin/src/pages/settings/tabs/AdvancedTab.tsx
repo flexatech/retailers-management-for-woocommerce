@@ -5,7 +5,6 @@ import { useFormContext } from 'react-hook-form';
 
 import { containerVariants, itemVariants } from '@/lib/helpers/settings.helper';
 import { SettingsFormData } from '@/lib/schema/settings';
-import { cn, isLite } from '@/lib/utils';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import {
   Select,
@@ -14,7 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { ProLockedOverlay } from '@/components/custom/ProLockedOverlay';
 import { SettingRow } from '@/components/settings/SettingRow';
 
 const STOCK_BASED_DISPLAY_RULES = [
@@ -189,8 +187,6 @@ export default function AdvancedTab() {
               }
             />
           </div>
-
-          {isLite && <ProLockedOverlay />}
         </motion.div>
       </motion.div>
     </>

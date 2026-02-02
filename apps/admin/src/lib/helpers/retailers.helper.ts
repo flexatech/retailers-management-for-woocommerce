@@ -1,5 +1,3 @@
-export const LITE_MAX_RETAILERS = 5;
-
 export const DEFAULT_RETAILER = {
   name: undefined,
   type: undefined,

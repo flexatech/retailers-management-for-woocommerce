@@ -32,9 +32,8 @@ class Helper {
         $section_title    = __( 'Where to Buy', 'retailers-management-for-woocommerce' );
         $default_settings = [
             'general'  => [
-                'showOnProducts'      => true,
-                'openNewTab'          => true,
-                'enableClickTracking' => true,
+                'showOnProducts' => true,
+                'openNewTab'    => true,
             ],
             'display'  => [
                 'sectionTitle' => $section_title,
@@ -64,5 +63,70 @@ class Helper {
         ];
 
         return apply_filters( 'retailers_management_default_settings', $default_settings );
+    }
+
+    /**
+     * Sanitize settings before saving to database.
+     *
+     * @param array $input Raw settings from request.
+     * @return array Sanitized settings merged with defaults.
+     */
+    public static function sanitize_settings( $input ) {
+        if ( ! is_array( $input ) ) {
+            return self::get_default_settings();
+        }
+
+        $defaults = self::get_default_settings();
+
+        $allowed_positions = [ 'after_product_price', 'after_add_to_cart_button', 'below_product_details', 'product_tab' ];
+        $allowed_layouts   = [ 'list', 'grid', 'modal', 'map-card' ];
+        $allowed_show_when = [ 'always', 'out_of_stock', 'in_stock' ];
+        $visibility_keys   = [ 'logo', 'name', 'type', 'address', 'stock', 'price', 'originalPrice', 'button' ];
+
+        $general = isset( $input['general'] ) && is_array( $input['general'] ) ? $input['general'] : [];
+        $sanitized = [
+            'general'  => [
+                'showOnProducts' => isset( $general['showOnProducts'] ) ? rest_sanitize_boolean( $general['showOnProducts'] ) : $defaults['general']['showOnProducts'],
+                'openNewTab'     => isset( $general['openNewTab'] ) ? rest_sanitize_boolean( $general['openNewTab'] ) : $defaults['general']['openNewTab'],
+            ],
+            'display'  => [
+                'sectionTitle' => isset( $input['display']['sectionTitle'] ) ? sanitize_text_field( $input['display']['sectionTitle'] ) : ( $defaults['display']['sectionTitle'] ?? '' ),
+                'position'     => isset( $input['display']['position'] ) && in_array( $input['display']['position'], $allowed_positions, true ) ? $input['display']['position'] : $defaults['display']['position'],
+                'layoutStyle'  => isset( $input['display']['layoutStyle'] ) && in_array( $input['display']['layoutStyle'], $allowed_layouts, true ) ? $input['display']['layoutStyle'] : $defaults['display']['layoutStyle'],
+                'visibility'   => [],
+            ],
+            'advanced' => [
+                'stockBasedDisplayRules' => [
+                    'showWhen'              => $defaults['advanced']['stockBasedDisplayRules']['showWhen'],
+                    'hideAddToCardWhenShow' => $defaults['advanced']['stockBasedDisplayRules']['hideAddToCardWhenShow'],
+                ],
+                'geoTargeting' => [
+                    'showDifferentRetailersOnCountry' => $defaults['advanced']['geoTargeting']['showDifferentRetailersOnCountry'],
+                    'autoDetectLocation'              => $defaults['advanced']['geoTargeting']['autoDetectLocation'],
+                ],
+            ],
+        ];
+
+        if ( isset( $input['display']['visibility'] ) && is_array( $input['display']['visibility'] ) ) {
+            foreach ( $visibility_keys as $key ) {
+                $sanitized['display']['visibility'][ $key ] = isset( $input['display']['visibility'][ $key ] ) ? rest_sanitize_boolean( $input['display']['visibility'][ $key ] ) : ( $defaults['display']['visibility'][ $key ] ?? true );
+            }
+        } else {
+            $sanitized['display']['visibility'] = $defaults['display']['visibility'];
+        }
+
+        if ( isset( $input['advanced']['stockBasedDisplayRules'] ) && is_array( $input['advanced']['stockBasedDisplayRules'] ) ) {
+            $sb = $input['advanced']['stockBasedDisplayRules'];
+            $sanitized['advanced']['stockBasedDisplayRules']['showWhen']              = isset( $sb['showWhen'] ) && in_array( $sb['showWhen'], $allowed_show_when, true ) ? $sb['showWhen'] : $defaults['advanced']['stockBasedDisplayRules']['showWhen'];
+            $sanitized['advanced']['stockBasedDisplayRules']['hideAddToCardWhenShow'] = isset( $sb['hideAddToCardWhenShow'] ) ? rest_sanitize_boolean( $sb['hideAddToCardWhenShow'] ) : $defaults['advanced']['stockBasedDisplayRules']['hideAddToCardWhenShow'];
+        }
+
+        if ( isset( $input['advanced']['geoTargeting'] ) && is_array( $input['advanced']['geoTargeting'] ) ) {
+            $gt = $input['advanced']['geoTargeting'];
+            $sanitized['advanced']['geoTargeting']['showDifferentRetailersOnCountry'] = isset( $gt['showDifferentRetailersOnCountry'] ) ? rest_sanitize_boolean( $gt['showDifferentRetailersOnCountry'] ) : $defaults['advanced']['geoTargeting']['showDifferentRetailersOnCountry'];
+            $sanitized['advanced']['geoTargeting']['autoDetectLocation']              = isset( $gt['autoDetectLocation'] ) ? rest_sanitize_boolean( $gt['autoDetectLocation'] ) : $defaults['advanced']['geoTargeting']['autoDetectLocation'];
+        }
+
+        return apply_filters( 'retailers_management_sanitize_settings', $sanitized, $input );
     }
 }

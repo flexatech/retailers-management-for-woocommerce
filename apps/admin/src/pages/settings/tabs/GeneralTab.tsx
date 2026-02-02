@@ -1,11 +1,10 @@
 import { __ } from '@wordpress/i18n';
 import { motion } from 'framer-motion';
-import { ExternalLink, MousePointerClick, Sparkles, ToggleLeft } from 'lucide-react';
+import { ExternalLink, Sparkles, ToggleLeft } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
 
 import { containerVariants, itemVariants } from '@/lib/helpers/settings.helper';
 import { SettingsFormData } from '@/lib/schema/settings';
-import { isLite } from '@/lib/utils';
 import { SettingRow } from '@/components/settings/SettingRow';
 
 export default function GeneralTab() {
@@ -61,24 +60,6 @@ export default function GeneralTab() {
               )}
               checked={generalSetting.openNewTab}
               onCheckedChange={(checked) => setValue('general.openNewTab', checked)}
-            />
-
-            <SettingRow
-              icon={<MousePointerClick className="h-5 w-5" />}
-              title={__('Enable Click Tracking', 'retailers-management-for-woocommerce')}
-              description={__(
-                'Track clicks on retailer buttons for analytics',
-                'retailers-management-for-woocommerce',
-              )}
-              checked={generalSetting.enableClickTracking}
-              onCheckedChange={
-                isLite ? () => {} : (checked) => setValue('general.enableClickTracking', checked)
-              }
-              disabled={isLite}
-              tooltip={__(
-                'Analytics data will be available in the Dashboard',
-                'retailers-management-for-woocommerce',
-              )}
             />
           </div>
         </motion.div>

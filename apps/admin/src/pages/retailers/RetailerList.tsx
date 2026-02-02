@@ -5,14 +5,13 @@ import { __ } from '@wordpress/i18n';
 import { Plus, RefreshCcw, SquareCheck, Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-import { DEFAULT_RETAILER_PAGINATION, LITE_MAX_RETAILERS } from '@/lib/helpers/retailers.helper';
+import { DEFAULT_RETAILER_PAGINATION } from '@/lib/helpers/retailers.helper';
 import {
   useBulkUpdateRetailerStatusMutation,
   useDeleteManyRetailersMutation,
   useDeleteRetailerMutation,
   useRetailersQuery,
 } from '@/lib/queries/retailers';
-import { isLite } from '@/lib/utils';
 import BulkActionBox from '@/components/ui/bulk-actions-box';
 import { Button } from '@/components/ui/button';
 import {
@@ -22,7 +21,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import RetailerLimitPopup from '@/components/custom/RetailerLimitPopup';
 import { DataTable as RetailerTypesTableList } from '@/components/retailer-types/DataTable';
 
 import { RetailerPagination } from './data-view/RetailerPagination';
@@ -32,7 +30,6 @@ import { RetailersColumns } from './list/RetailersColumns';
 
 export default function RetailersList() {
   const navigate = useNavigate();
-  const [showLimitPopup, setShowLimitPopup] = useState(false);
   const [keyword, setKeyword] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
@@ -112,10 +109,6 @@ export default function RetailersList() {
   const retailers = data?.data ?? [];
 
   const handleAddNewRetailer = () => {
-    if (isLite && retailers.length > LITE_MAX_RETAILERS) {
-      setShowLimitPopup(true);
-      return;
-    }
     navigate('/retailers/new');
   };
   return (
@@ -226,13 +219,6 @@ export default function RetailersList() {
           <Trash2 className="h-3.5 w-3.5" />
         </Button>
       </BulkActionBox>
-
-      <RetailerLimitPopup
-        open={showLimitPopup}
-        onOpenChange={setShowLimitPopup}
-        currentCount={retailers.length}
-        maxLimit={LITE_MAX_RETAILERS}
-      />
     </>
   );
 }

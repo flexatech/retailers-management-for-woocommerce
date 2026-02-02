@@ -50,9 +50,10 @@ class Settings {
 
     public function add_document_support_links( $links, $file ) {
         if ( strpos( $file, FLEXA_RETAILERS_MANAGEMENT_BASE_NAME ) !== false ) {
-            $new_links = [
-                'doc'     => '<a href="https://flexa.com/support/" target="_blank">' . __( 'Docs', 'retailers-management-for-woocommerce' ) . '</a>',
-                'support' => '<a href="https://flexa.com/support/" target="_blank" aria-label="' . esc_attr__( 'Visit community forums', 'retailers-management-for-woocommerce' ) . '">' . esc_html__( 'Support', 'retailers-management-for-woocommerce' ) . '</a>',
+            $doc_url    = esc_url( 'https://flexa.com/support/' );
+            $new_links  = [
+                'doc'     => '<a href="' . $doc_url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Docs', 'retailers-management-for-woocommerce' ) . '</a>',
+                'support' => '<a href="' . $doc_url . '" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__( 'Visit community forums', 'retailers-management-for-woocommerce' ) . '">' . esc_html__( 'Support', 'retailers-management-for-woocommerce' ) . '</a>',
             ];
             $links     = array_merge( $links, $new_links );
         }

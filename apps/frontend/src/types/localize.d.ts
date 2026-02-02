@@ -5,7 +5,6 @@ interface SettingsFormData {
   general: {
     showOnProducts: boolean;
     openNewTab: boolean;
-    enableClickTracking: boolean;
   };
   display: {
     sectionTitle?: string;

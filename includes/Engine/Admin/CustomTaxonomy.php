@@ -78,11 +78,11 @@ class CustomTaxonomy {
             return $clauses;
         }
 
-        $clauses['join'] .= "
-            LEFT JOIN {$wpdb->termmeta} tm
-            ON tm.term_id = t.term_id
-            AND tm.meta_key = '" . esc_sql( RetailerTypeHelper::RETAILER_TYPE_META_STATUS ) . "'
-        ";
+        $meta_key = RetailerTypeHelper::RETAILER_TYPE_META_STATUS;
+        $clauses['join'] .= $wpdb->prepare(
+            " LEFT JOIN {$wpdb->termmeta} tm ON tm.term_id = t.term_id AND tm.meta_key = %s ",
+            $meta_key
+        );
 
         if ( '1' === $args['meta_status'] ) {
             $clauses['where'] .= " AND tm.meta_value = '1' ";

@@ -4,8 +4,6 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
-import { ProLockedOverlay } from '../custom/ProLockedOverlay';
-
 interface SettingRowProps {
   icon: React.ReactNode;
   title: string;
@@ -45,7 +43,6 @@ export const SettingRow = ({
         <p className="text-muted-foreground text-sm">{description}</p>
       </div>
     </div>
-    <Switch checked={checked} onCheckedChange={onCheckedChange} />
-    {disabled && <ProLockedOverlay size="small" />}
+    <Switch checked={checked} onCheckedChange={onCheckedChange} disabled={disabled} />
   </div>
 );

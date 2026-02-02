@@ -183,12 +183,6 @@ export function ProductRetailersFrontend({ productId }: ProductRetailersFrontend
               href={effectiveUrl}
               target={general?.openNewTab ? '_blank' : '_self'}
               rel={general?.openNewTab ? 'noopener noreferrer' : undefined}
-              onClick={() => {
-                if (general?.enableClickTracking) {
-                  // Track click if enabled
-                  console.log('Retailer click tracked:', retailerData.name);
-                }
-              }}
               className={cn(
                 'mt-2 inline-flex items-center gap-1.5 rounded-lg font-medium transition-transform hover:scale-105',
                 compact ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm',
@@ -401,11 +395,6 @@ export function ProductRetailersFrontend({ productId }: ProductRetailersFrontend
               href={effectiveUrl}
               target={general?.openNewTab ? '_blank' : '_self'}
               rel={general?.openNewTab ? 'noopener noreferrer' : undefined}
-              onClick={() => {
-                if (general?.enableClickTracking) {
-                  console.log('Retailer click tracked:', retailerData.name);
-                }
-              }}
               className="inline-flex items-center gap-1.5 md:gap-2 rounded-xl px-4 py-2 md:px-5 md:py-2.5 text-xs md:text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl"
               style={{
                 ...getButtonStyle(),

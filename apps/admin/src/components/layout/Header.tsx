@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { Bolt, LayoutDashboard, ShoppingBag, Store, Tag } from 'lucide-react';
 import { useMatch, useNavigate } from 'react-router-dom';
 
-import { cn, isPro } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { useScrolled } from '@/hooks/useScrolled';
 import { HeaderNavMenuItem, HeaderNavMenuList } from '@/components/ui/navmenu-header';
 
@@ -17,7 +17,7 @@ const BASE_NAV_ITEMS = [
   { path: '/settings/*', to: '/settings', icon: Bolt, label: 'Settings' },
 ];
 
-const NAV_ITEMS = [...(isPro ? PRO_NAV_ITEMS : []), ...BASE_NAV_ITEMS];
+const NAV_ITEMS = [...PRO_NAV_ITEMS, ...BASE_NAV_ITEMS];
 
 export default function Header() {
   const navigate = useNavigate();

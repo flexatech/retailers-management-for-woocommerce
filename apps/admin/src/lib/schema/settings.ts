@@ -5,7 +5,6 @@ export const settingsFormSchema = z.object({
   general: z.object({
     showOnProducts: z.boolean(),
     openNewTab: z.boolean(),
-    enableClickTracking: z.boolean(),
   }),
   display: z.object({
     sectionTitle: z.string().optional(),
