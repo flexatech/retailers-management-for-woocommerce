@@ -1,32 +1,32 @@
-.flexa-wp-color-picker > div:not(.react-colorful) {
+.rmfw-wp-color-picker > div:not(.react-colorful) {
   display: none;
 }
 
-.flexa-wp-color-picker,
-.flexa-wp-color-picker .react-colorful {
+.rmfw-wp-color-picker,
+.rmfw-wp-color-picker .react-colorful {
   width: 100% !important;
 }
-.flexa-wp-color-picker .react-colorful .react-colorful__hue {
+.rmfw-wp-color-picker .react-colorful .react-colorful__hue {
   width: 92% !important;
 }
-.flexa-wp-color-palette
+.rmfw-wp-color-palette
   .components-circular-option-picker
   .components-circular-option-picker__swatches {
   gap: 6px;
 }
 
-.flexa-wp-color-input {
+.rmfw-wp-color-input {
   width: 100px;
 }
 
-.flexa-wp-color-input .components-input-control__container {
+.rmfw-wp-color-input .components-input-control__container {
   border-radius: 6px;
 }
-.flexa-wp-color-input .components-input-control__container input {
+.rmfw-wp-color-input .components-input-control__container input {
   height: 36px !important;
   min-height: 36px !important;
 }
-.flexa-wp-color-input .components-input-control__container input:focus {
+.rmfw-wp-color-input .components-input-control__container input:focus {
   border-color: #23916f;
 }
 .components-button:focus:not(:disabled) {

@@ -31,8 +31,8 @@ class Settings {
     }
 
     public function admin_body_class( $classes ) {
-        if ( strpos( $classes, 'flexa-retailers-ui' ) === false ) {
-            $classes .= ' flexa-retailers-ui';
+        if ( strpos( $classes, 'rmfw-retailers-ui' ) === false ) {
+            $classes .= ' rmfw-retailers-ui';
         }
         return $classes;
     }
