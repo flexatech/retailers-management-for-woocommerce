@@ -40,7 +40,7 @@ class Settings {
     public function add_action_links( $links ) {
         $links = array_merge(
             [
-                '<a href="' . esc_url( admin_url( '/admin.php?page=retailers-management-for-woocommerce' ) ) . '">' . __( 'Settings', 'retailers-management-for-woocommerce' ) . '</a>',
+                '<a href="' . esc_url( admin_url( '/admin.php?page=retailers-management-for-woocommerce' ) ) . '">' . esc_html__( 'Settings', 'retailers-management-for-woocommerce' ) . '</a>',
             ],
             $links
         );
@@ -75,7 +75,14 @@ class Settings {
     }
 
     public function submenu_page_callback() {
-        echo '<div id="retailers-management-for-woocommerce"></div>';
+        echo wp_kses(
+            '<div id="retailers-management-for-woocommerce"></div>',
+            [
+                'div' => [
+                    'id' => true,
+                ],
+            ]
+        );
     }
 
     public function admin_enqueue_scripts( $hook_suffix ) {

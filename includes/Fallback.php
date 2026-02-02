@@ -18,7 +18,7 @@ add_action(
                         'retailers-management-for-woocommerce'
                     );
                     ?>
-                    <a href="#">
+                    <a href="<?php echo esc_url( '#' ); ?>">
                         <?php esc_html_e( 'Read more details.', 'retailers-management-for-woocommerce' ); ?>
                     </a>
                 </strong>

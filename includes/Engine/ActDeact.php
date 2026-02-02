@@ -7,8 +7,22 @@ namespace RetailersManagement\Engine;
 class ActDeact {
 
     public static function install_woocommerce_admin_notice() {
-        /* translators: %s: Woocommerce link */
-        echo '<div class="error"><p><strong>' . sprintf( esc_html__( 'Retailers Management for WooCommerce is enabled but not effective. It requires %s in order to work', 'retailers-management-for-woocommerce' ), '<a href="' . esc_url( admin_url( 'plugin-install.php?s=woocommerce&tab=search&type=term' ) ) . '">WooCommerce</a>' ) . '</strong></p></div>';
+        $woocommerce_url = esc_url( admin_url( 'plugin-install.php?s=woocommerce&tab=search&type=term' ) );
+        $woocommerce_link = '<a href="' . $woocommerce_url . '">' . esc_html( 'WooCommerce' ) . '</a>';
+        /* translators: %s: WooCommerce link */
+        $message = sprintf(
+            esc_html__( 'Retailers Management for WooCommerce is enabled but not effective. It requires %s in order to work', 'retailers-management-for-woocommerce' ),
+            $woocommerce_link
+        );
+        echo wp_kses(
+            '<div class="error"><p><strong>' . $message . '</strong></p></div>',
+            [
+                'div' => [ 'class' => true ],
+                'p'   => [],
+                'strong' => [],
+                'a'    => [ 'href' => true ],
+            ]
+        );
         return false;
     }
 
