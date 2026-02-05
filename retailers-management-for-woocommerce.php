@@ -55,6 +55,8 @@ if ( ! defined( 'FLEXA_RETAILERS_MANAGEMENT_BASE_NAME' ) ) {
     define( 'FLEXA_RETAILERS_MANAGEMENT_BASE_NAME', plugin_basename( FLEXA_RETAILERS_MANAGEMENT_FILE ) );
 }
 
+define( 'FLEXA_RETAILERS_MANAGEMENT_IS_DEVELOPMENT', false );
+
 spl_autoload_register(
     function ( $class ) {
         $prefix = __NAMESPACE__;

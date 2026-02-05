@@ -128,7 +128,7 @@ export default function RetailersGrid({
                     )}
                   </span>
                 }
-                content={retailer.address.length > 35 ? <span>{retailer.address}</span> : undefined}
+                content={retailer.address && retailer.address.length > 35 ? <span>{retailer.address}</span> : undefined}
               />
             </div>
 

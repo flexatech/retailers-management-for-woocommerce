@@ -5,6 +5,7 @@ import { useFormContext } from 'react-hook-form';
 
 import { containerVariants, itemVariants } from '@/lib/helpers/settings.helper';
 import { SettingsFormData } from '@/lib/schema/settings';
+import { cn } from '@/lib/utils';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import {
   Select,
