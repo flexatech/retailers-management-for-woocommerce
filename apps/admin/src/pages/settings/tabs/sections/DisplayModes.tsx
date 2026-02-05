@@ -51,7 +51,7 @@ export default function DisplayModes({ expanded, toggleSection }: DisplayModesPr
           >
             <div className="my-6 px-6">
               <RadioGroup
-                value={displaySetting.layoutStyle}
+                value={displaySetting.layoutStyle ?? 'list'}
                 onValueChange={(value) =>
                   setValue(
                     'display.layoutStyle',
@@ -68,7 +68,7 @@ export default function DisplayModes({ expanded, toggleSection }: DisplayModesPr
                     description={mode.description}
                     icon={mode.icon}
                     preview={mode.preview}
-                    isSelected={displaySetting.layoutStyle === mode.id}
+                    isSelected={(displaySetting.layoutStyle ?? 'list') === mode.id}
                   />
                 ))}
               </RadioGroup>

@@ -74,6 +74,8 @@ class SettingsRestController extends BaseRestController {
 
         if ( ! is_array( $settings ) ) {
             $settings = Helper::get_default_settings();
+        } else {
+            $settings = array_replace_recursive( Helper::get_default_settings(), $settings );
         }
 
         return $this->success( $settings );

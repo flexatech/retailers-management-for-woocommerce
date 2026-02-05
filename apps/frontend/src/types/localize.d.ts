@@ -9,7 +9,7 @@ interface SettingsFormData {
   display: {
     sectionTitle?: string;
     position: string;
-    layoutStyle: 'list' | 'grid' | 'modal' | 'map-card';
+    layoutStyle: 'list';
     visibility: {
       logo: boolean;
       name: boolean;
