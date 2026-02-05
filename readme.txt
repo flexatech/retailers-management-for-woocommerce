@@ -4,7 +4,7 @@ Tags: woocommerce, retailers, stores, dealers, product retailers
 Requires at least: 4.7
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -84,6 +84,13 @@ The plugin uses OpenStreetMap's Nominatim geocoding service to help you find and
 
 == Changelog ==
 
+= 1.0.3 =
+* Clean up: Removed Dashboard menu and page from admin
+* Clean up: Removed Modal Popup, Store Locator, and Card Grid display modes (admin and frontend); only Classic List is supported
+* Clean up: Default display mode is list when none is set; settings merged with defaults for consistent behavior
+* Clean up: Excluded hidden files from plugin zip (WordPress.org compatibility)
+* Clean up: Added translators comment for placeholder in admin notice (I18n compliance)
+
 = 1.0.2 =
 * Fixed: Correct Contributors
 * Fixed: Missing permission_callback in REST API Route
@@ -104,6 +111,9 @@ The plugin uses OpenStreetMap's Nominatim geocoding service to help you find and
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+Code cleanup release: Dashboard and unused display modes removed; only Classic List display is used.
 
 = 1.0.0 =
 Initial release.
