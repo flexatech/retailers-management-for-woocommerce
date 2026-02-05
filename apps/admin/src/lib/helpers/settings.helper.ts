@@ -36,7 +36,6 @@ export const DEFAULT_SETTINGS: SettingsFormData = {
   general: {
     showOnProducts: true,
     openNewTab: true,
-    enableClickTracking: true,
   },
   display: {
     sectionTitle: __('Where to Buy', 'retailers-management-for-woocommerce'),

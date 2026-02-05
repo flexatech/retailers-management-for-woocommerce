@@ -12,6 +12,7 @@ class RetailerTypeHelper {
     public const RETAILER_TYPE_META_ICON_URL = 'retailer_type_icon_url';
     public const RETAILER_TYPE_ALL_STATUS    = 'all';
     public const RETAILER_TYPE_PER_PAGE      = 9;
+    public const RETAILER_TYPE_MAX_PER_PAGE  = 100;
 
     protected function __construct() {}
 

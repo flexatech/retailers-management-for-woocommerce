@@ -9,6 +9,7 @@ class RetailerHelper {
     public const RETAILER_POST_TYPE          = 'retailers_management';
     public const RETAILER_ALL_STATUS         = 'all';
     public const RETAILER_PER_PAGE           = 10;
+    public const RETAILER_MAX_PER_PAGE       = 100;
     public const RETAILER_META_TYPE          = 'type';
     public const RETAILER_META_DESCRIPTION   = 'description';
     public const RETAILER_META_STATUS        = 'status';

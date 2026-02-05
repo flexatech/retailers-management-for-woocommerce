@@ -112,7 +112,7 @@ export const RetailersColumns = (actions: ColumnActions): ColumnDef<RetailersLis
             </span>
           </div>
         }
-        content={row.original.address.length > 35 ? <span>{row.original.address}</span> : undefined}
+        content={row.original.address && row.original.address.length > 35 ? <span>{row.original.address}</span> : undefined}
       />
     ),
   },

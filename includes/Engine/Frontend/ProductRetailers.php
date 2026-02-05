@@ -115,7 +115,8 @@ class ProductRetailers {
             $settings = Helper::get_default_settings();
         }
 
-        $section_title = $settings['display']['sectionTitle'] ?? __( 'Where to Buy', 'retailers-management-for-woocommerce' );
+        $section_title_raw = $settings['display']['sectionTitle'] ?? __( 'Where to Buy', 'retailers-management-for-woocommerce' );
+        $section_title     = esc_html( $section_title_raw );
 
         $tabs['retailers'] = [
             'title'    => $section_title,

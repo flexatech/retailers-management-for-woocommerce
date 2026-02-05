@@ -1,3 +1,5 @@
+# Exclude all hidden files and directories (WordPress.org does not allow them in plugin zip)
+.*
 .vscode
 .DS_Store
 .git/

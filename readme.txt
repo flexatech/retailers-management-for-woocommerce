@@ -4,7 +4,7 @@ Tags: woocommerce, retailers, stores, dealers, product retailers
 Requires at least: 4.7
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,14 @@ With this plugin, you can:
 
 This plugin is designed to be lightweight, secure, and fully compatible with WooCommerce.
 
+**Source code for compiled JavaScript and CSS**
+
+The plugin ships with minified/compiled JavaScript and CSS in `assets/dist/`. The human-readable source code for these assets is **publicly available** and maintained at:
+
+**https://github.com/flexatech/retailers-management-for-woocommerce**
+
+Source lives in the `apps/admin` (admin UI) and `apps/frontend` (product page UI) directories. Build tools used: **pnpm**, **Vite**, **React**, **TypeScript**. To build from source: clone the repository, run `pnpm install` from the plugin root, then build the admin and frontend apps (see the repository README for exact commands). This allows the code to be reviewed, studied, and forked.
+
 **Third-Party Services:**
 This plugin uses the OpenStreetMap Nominatim API for address geocoding. The service is free and provided by the OpenStreetMap Foundation. Address searches are rate-limited and only occur when you actively use the address autocomplete feature in the admin panel. For details about OpenStreetMap's usage policy, visit: https://operations.osmfoundation.org/policies/nominatim/
 
@@ -36,15 +44,14 @@ This plugin uses the OpenStreetMap Nominatim API for address geocoding. The serv
 
 == Development / Build ==
 
-This plugin uses modern JavaScript tooling to build its admin and frontend assets.
+The compiled production assets in this plugin are in `assets/dist/`. They are built from human-readable source (React/TypeScript/Vite) in the repository above. To rebuild:
 
-The complete, human-readable source code for all JavaScript and CSS files included in this plugin is publicly available and maintained at:
-https://github.com/flexatech/retailers-management-for-woocommerce
+1. Clone the repository: `git clone https://github.com/flexatech/retailers-management-for-woocommerce.git`
+2. From the plugin root: `pnpm install`
+3. Build admin UI: `cd apps/admin && pnpm build`
+4. Build frontend UI: `cd apps/frontend && pnpm build`
 
-Detailed and up-to-date build instructions for both admin and frontend assets are documented in the repository README.
-
-The compiled production assets distributed with this plugin are located in:
-assets/dist/
+Output goes to `assets/dist/admin` and `assets/dist/frontend`. For full details and scripts, see the repository README.
 
 == Frequently Asked Questions ==
 
@@ -76,6 +83,10 @@ The plugin uses OpenStreetMap's Nominatim geocoding service to help you find and
 3. Retailer information displayed on the product page
 
 == Changelog ==
+
+= 1.0.2 =
+* Fixed: Correct Contributors
+* Fixed: Missing permission_callback in REST API Route
 
 = 1.0.1 =
 * Security: Added comprehensive input sanitization for all REST API endpoints

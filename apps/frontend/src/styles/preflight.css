@@ -1,6 +1,6 @@
-.flexa-retailers-ui {
+.rmfw-retailers-ui {
   /* Base styles */
-  color: var(--flexa-color-foreground);
+  color: var(--rmfw-color-foreground);
   font-size: 0.875rem;
   line-height: 1.25rem;
 
@@ -225,14 +225,14 @@
 }
 
 /* Override wp styles */
-.flexa-retailers-ui {
+.rmfw-retailers-ui {
   :where(button, code, form, h1, h2, h3, h4, h5, h6, input, ul, ol, li, nav, p, textarea) {
     margin: 0;
     padding: 0;
   }
 }
 
-.flexa-retailers-ui.rmfw-product-retailers-frontend {
+.rmfw-retailers-ui.rmfw-product-retailers-frontend {
   padding: 30px 0px;
 }
 

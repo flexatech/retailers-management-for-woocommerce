@@ -1,8 +1,6 @@
 import Retailers from '@/pages/retailers/Retailers';
 import { createHashRouter, redirect, type RouteObject } from 'react-router-dom';
 
-import { isPro } from '@/lib/utils';
-
 import AppLayout from './AppLayout';
 import Dashboard from './pages/Dashboard';
 import NotFoundPage from './pages/NotFound';
@@ -49,7 +47,7 @@ export function getManagerRouter() {
       path: '/',
       element: <AppLayout />,
       errorElement: <NotFoundPage />,
-      children: [...(isPro ? proRoutes : []), ...baseRoutes],
+      children: [...proRoutes, ...baseRoutes],
     },
   ]);
 }

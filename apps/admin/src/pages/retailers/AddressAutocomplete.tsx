@@ -50,7 +50,7 @@ export function AddressAutocomplete({ value = '', error = false, onSelect, onCle
           `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`,
           {
             headers: {
-              'User-Agent': 'Retailers-Management-for-WooCommerce/1.0.0 (WordPress Plugin; https://flexa.vn/)',
+              'User-Agent': 'Retailers-Management-for-WooCommerce/1.0.0 (WordPress Plugin; https://wordpress.org/plugins/retailers-management-for-woocommerce/)',
             },
           },
         );

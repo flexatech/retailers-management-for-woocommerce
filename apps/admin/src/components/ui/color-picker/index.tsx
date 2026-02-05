@@ -130,12 +130,12 @@ export function ColorPicker({
               onChange={(newColor = '#000000') => handleChange(newColor)}
               disableCustomColors={true}
               clearable={false}
-              className="flexa-wp-color-palette"
+              className="rmfw-wp-color-palette"
             />
           </div>
 
           <WPColorPicker
-            className="flexa-wp-color-picker"
+            className="rmfw-wp-color-picker"
             color={displayColor}
             onChange={handleChange}
             enableAlpha={false}
@@ -150,7 +150,7 @@ export function ColorPicker({
                 prefix={<span className="ml-3">#</span>}
                 value={inputValue}
                 onChange={handleInputChange}
-                className="flexa-wp-color-input w-full"
+                className="rmfw-wp-color-input w-full"
               />
             </div>
             <Button

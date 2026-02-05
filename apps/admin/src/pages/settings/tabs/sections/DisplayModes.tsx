@@ -33,7 +33,6 @@ const displayModes = [
     name: __('Store Locator', 'retailers-management-for-woocommerce'),
     description: __('Interactive map with pins', 'retailers-management-for-woocommerce'),
     icon: <MapPin className="size-4" />,
-    isPro: true,
     preview: <StoreLocatorPreview />,
   },
   {

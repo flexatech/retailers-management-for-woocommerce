@@ -21,7 +21,7 @@ class Settings {
 
         add_action( 'admin_menu', [ $this, 'admin_menu' ] );
 
-        add_filter( 'plugin_action_links_' . FLEXA_RETAILERS_MANAGEMENT_BASE_NAME, [ $this, 'add_action_links' ] );
+        add_filter( 'plugin_action_links_' . FLEXA_TECH_RETAILERS_MANAGEMENT_BASE_NAME, [ $this, 'add_action_links' ] );
 
         add_filter( 'plugin_row_meta', [ $this, 'add_document_support_links' ], 10, 2 );
 
@@ -31,8 +31,8 @@ class Settings {
     }
 
     public function admin_body_class( $classes ) {
-        if ( strpos( $classes, 'flexa-retailers-ui' ) === false ) {
-            $classes .= ' flexa-retailers-ui';
+        if ( strpos( $classes, 'rmfw-retailers-ui' ) === false ) {
+            $classes .= ' rmfw-retailers-ui';
         }
         return $classes;
     }
@@ -40,7 +40,7 @@ class Settings {
     public function add_action_links( $links ) {
         $links = array_merge(
             [
-                '<a href="' . esc_url( admin_url( '/admin.php?page=retailers-management-for-woocommerce' ) ) . '">' . __( 'Settings', 'retailers-management-for-woocommerce' ) . '</a>',
+                '<a href="' . esc_url( admin_url( '/admin.php?page=retailers-management-for-woocommerce' ) ) . '">' . esc_html__( 'Settings', 'retailers-management-for-woocommerce' ) . '</a>',
             ],
             $links
         );
@@ -49,10 +49,11 @@ class Settings {
     }
 
     public function add_document_support_links( $links, $file ) {
-        if ( strpos( $file, FLEXA_RETAILERS_MANAGEMENT_BASE_NAME ) !== false ) {
-            $new_links = [
-                'doc'     => '<a href="https://flexa.com/support/" target="_blank">' . __( 'Docs', 'retailers-management-for-woocommerce' ) . '</a>',
-                'support' => '<a href="https://flexa.com/support/" target="_blank" aria-label="' . esc_attr__( 'Visit community forums', 'retailers-management-for-woocommerce' ) . '">' . esc_html__( 'Support', 'retailers-management-for-woocommerce' ) . '</a>',
+        if ( strpos( $file, FLEXA_TECH_RETAILERS_MANAGEMENT_BASE_NAME ) !== false ) {
+            $doc_url    = esc_url( 'https://flexa.com/support/' );
+            $new_links  = [
+                'doc'     => '<a href="' . $doc_url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Docs', 'retailers-management-for-woocommerce' ) . '</a>',
+                'support' => '<a href="' . $doc_url . '" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__( 'Visit community forums', 'retailers-management-for-woocommerce' ) . '">' . esc_html__( 'Support', 'retailers-management-for-woocommerce' ) . '</a>',
             ];
             $links     = array_merge( $links, $new_links );
         }
@@ -74,7 +75,14 @@ class Settings {
     }
 
     public function submenu_page_callback() {
-        echo '<div id="retailers-management-for-woocommerce"></div>';
+        echo wp_kses(
+            '<div id="retailers-management-for-woocommerce"></div>',
+            [
+                'div' => [
+                    'id' => true,
+                ],
+            ]
+        );
     }
 
     public function admin_enqueue_scripts( $hook_suffix ) {
@@ -92,6 +100,6 @@ class Settings {
     }
 
     public function admin_enqueue_admin_styles() {
-        wp_enqueue_style( 'retailers-management-admin-styles', FLEXA_RETAILERS_MANAGEMENT_PLUGIN_URL . 'assets/css/admin-styles.css', [], FLEXA_RETAILERS_MANAGEMENT_VERSION );
+        wp_enqueue_style( 'retailers-management-admin-styles', FLEXA_TECH_RETAILERS_MANAGEMENT_PLUGIN_URL . 'assets/css/admin-styles.css', [], FLEXA_TECH_RETAILERS_MANAGEMENT_VERSION );
     }
 }

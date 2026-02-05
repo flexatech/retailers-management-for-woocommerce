@@ -2,10 +2,9 @@ import { __ } from '@wordpress/i18n';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 
-import { cn, isLite } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { DisplayLabel } from '@/components/ui/display-label';
 import { RadioGroupItem } from '@/components/ui/radio-group';
-import { ProLockedOverlay } from '@/components/custom/ProLockedOverlay';
 
 interface DisplayModeCardProps {
   id: string;
@@ -31,10 +30,9 @@ export const DisplayModeCard = ({
       isSelected
         ? 'border-primary bg-primary/5 shadow-primary/10 shadow-lg'
         : 'border-border hover:border-primary/40 hover:bg-muted/30',
-      isLite && id === 'map-card' && 'relative cursor-not-allowed',
     )}
   >
-    <RadioGroupItem value={id} id={id} className="sr-only" disabled={isLite && id === 'map-card'} />
+    <RadioGroupItem value={id} id={id} className="sr-only" />
 
     {/* Header */}
     <div className="border-border/50 bg-muted/30 flex items-center gap-3 border-b px-4 py-3">
@@ -67,6 +65,5 @@ export const DisplayModeCard = ({
     <div className="flex flex-1 items-center justify-center p-4">
       <div className="w-full">{preview}</div>
     </div>
-    {isLite && id === 'map-card' && <ProLockedOverlay size="small" />}
   </DisplayLabel>
 );

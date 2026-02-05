@@ -20,7 +20,7 @@ class RegisterFacade {
         add_action( 'init', [ $this, 'register_all_assets' ] );
         add_filter( 'pre_load_script_translations', [ $this, 'use_mo_file_for_script_translations' ], 10, 4 );
 
-        $is_prod = ! defined( 'FLEXA_RETAILERS_MANAGEMENT_IS_DEVELOPMENT' ) || FLEXA_RETAILERS_MANAGEMENT_IS_DEVELOPMENT !== true;
+        $is_prod = ! defined( 'FLEXA_TECH_RETAILERS_MANAGEMENT_IS_DEVELOPMENT' ) || FLEXA_TECH_RETAILERS_MANAGEMENT_IS_DEVELOPMENT !== true;
         if ( $is_prod && class_exists( '\RetailersManagement\Register\RegisterProd' ) ) {
             \RetailersManagement\Register\RegisterProd::get_instance();
         } elseif ( ! $is_prod && class_exists( '\RetailersManagement\Register\RegisterDev' ) ) {
@@ -42,19 +42,19 @@ class RegisterFacade {
     public function register_all_assets() {
         wp_register_style(
             ScriptName::STYLE_SETTINGS,
-            FLEXA_RETAILERS_MANAGEMENT_PLUGIN_URL . 'assets/dist/admin/style.css',
+            FLEXA_TECH_RETAILERS_MANAGEMENT_PLUGIN_URL . 'assets/dist/admin/style.css',
             [
                 'woocommerce_admin_styles',
                 'wp-components',
             ],
-            FLEXA_RETAILERS_MANAGEMENT_VERSION
+            FLEXA_TECH_RETAILERS_MANAGEMENT_VERSION
         );
 
         wp_register_style(
             ScriptName::STYLE_PRODUCT_RETAILERS_FRONTEND,
-            FLEXA_RETAILERS_MANAGEMENT_PLUGIN_URL . 'assets/dist/frontend/style.css',
+            FLEXA_TECH_RETAILERS_MANAGEMENT_PLUGIN_URL . 'assets/dist/frontend/style.css',
             [],
-            FLEXA_RETAILERS_MANAGEMENT_VERSION
+            FLEXA_TECH_RETAILERS_MANAGEMENT_VERSION
         );
     }
 

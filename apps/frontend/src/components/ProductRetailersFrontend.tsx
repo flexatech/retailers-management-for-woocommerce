@@ -183,12 +183,6 @@ export function ProductRetailersFrontend({ productId }: ProductRetailersFrontend
               href={effectiveUrl}
               target={general?.openNewTab ? '_blank' : '_self'}
               rel={general?.openNewTab ? 'noopener noreferrer' : undefined}
-              onClick={() => {
-                if (general?.enableClickTracking) {
-                  // Track click if enabled
-                  console.log('Retailer click tracked:', retailerData.name);
-                }
-              }}
               className={cn(
                 'mt-2 inline-flex items-center gap-1.5 rounded-lg font-medium transition-transform hover:scale-105',
                 compact ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-sm',
@@ -255,7 +249,7 @@ export function ProductRetailersFrontend({ productId }: ProductRetailersFrontend
   // Render based on display mode
   if (displayMode === 'modal') {
     return (
-      <div className="flexa-retailers-ui rmfw-product-retailers-frontend mt-6">
+      <div className="rmfw-retailers-ui rmfw-product-retailers-frontend mt-6">
         <button
           type="button"
           onClick={() => setIsModalOpen(true)}
@@ -401,11 +395,6 @@ export function ProductRetailersFrontend({ productId }: ProductRetailersFrontend
               href={effectiveUrl}
               target={general?.openNewTab ? '_blank' : '_self'}
               rel={general?.openNewTab ? 'noopener noreferrer' : undefined}
-              onClick={() => {
-                if (general?.enableClickTracking) {
-                  console.log('Retailer click tracked:', retailerData.name);
-                }
-              }}
               className="inline-flex items-center gap-1.5 md:gap-2 rounded-xl px-4 py-2 md:px-5 md:py-2.5 text-xs md:text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl"
               style={{
                 ...getButtonStyle(),
@@ -423,7 +412,7 @@ export function ProductRetailersFrontend({ productId }: ProductRetailersFrontend
 
   if (displayMode === 'grid') {
     return (
-      <div className="flexa-retailers-ui rmfw-product-retailers-frontend mt-6">
+      <div className="rmfw-retailers-ui rmfw-product-retailers-frontend mt-6">
         <div className="space-y-3 md:space-y-5">
           {/* Header */}
           <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:justify-between">
@@ -462,7 +451,7 @@ export function ProductRetailersFrontend({ productId }: ProductRetailersFrontend
   if (displayMode === 'map-card') {
     // Map-card mode - simplified version (full map integration would require additional libraries)
     return (
-      <div className="flexa-retailers-ui rmfw-product-retailers-frontend mt-6">
+      <div className="rmfw-retailers-ui rmfw-product-retailers-frontend mt-6">
         <div className="space-y-4">
           <SectionHeader />
           <div className="border-border bg-muted/20 relative h-64 rounded-lg border">
@@ -493,7 +482,7 @@ export function ProductRetailersFrontend({ productId }: ProductRetailersFrontend
 
   // Default: list mode
   return (
-    <div className="flexa-retailers-ui rmfw-product-retailers-frontend mt-6">
+    <div className="rmfw-retailers-ui rmfw-product-retailers-frontend mt-6">
       <div className="space-y-4">
         <SectionHeader />
         <div className="space-y-3">

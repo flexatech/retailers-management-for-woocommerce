@@ -1,4 +1,4 @@
-PLUGIN_SLUG="retailers-management-for-woocommerce-pro"
+PLUGIN_SLUG="retailers-management-for-woocommerce"
 PROJECT_PATH=$(pwd)
 BUILD_PATH="${PROJECT_PATH}/build"
 DEST_PATH="$BUILD_PATH/$PLUGIN_SLUG"
@@ -46,7 +46,7 @@ fi
 #
 # 5) Remove development-only code
 #
-sed -i "" "/FLEXA_RETAILERS_MANAGEMENT_IS_DEVELOPMENT/d" "$DEST_PATH/retailers-management-for-woocommerce.php"
+sed -i "" "/FLEXA_TECH_RETAILERS_MANAGEMENT_IS_DEVELOPMENT/d" "$DEST_PATH/retailers-management-for-woocommerce.php"
 rm -rf "$DEST_PATH/includes/Engine/Register/RegisterDev.php"
 
 #

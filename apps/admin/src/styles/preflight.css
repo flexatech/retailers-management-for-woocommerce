@@ -1,4 +1,4 @@
-.flexa-retailers-ui {
+.rmfw-retailers-ui {
   @apply text-foreground text-sm;
 
   /* Chrome, Safari, Edge, Opera */
@@ -20,12 +20,12 @@
 
 /* Override wp styles */
 
-.flexa-retailers-ui {
+.rmfw-retailers-ui {
   :where(button, code, form, h1, h2, h3, h4, h5, h6, input, ul, ol, li, nav, p, textarea) {
     @apply m-0 p-0;
   }
 }
-.flexa-retailers-ui.rmfw-product-retailers-frontend {
+.rmfw-retailers-ui.rmfw-product-retailers-frontend {
   padding: 30px 0px;
 }
 #rmfw-product-retailers-frontend {

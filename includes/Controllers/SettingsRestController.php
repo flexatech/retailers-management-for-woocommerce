@@ -90,6 +90,7 @@ class SettingsRestController extends BaseRestController {
         if ( ! is_array( $settings ) ) {
             $settings = Helper::get_default_settings();
         }
+        $settings = Helper::sanitize_settings( $settings );
         update_option( 'retailers_management_settings', $settings );
         return $this->success( $settings, __( 'Settings saved successfully', 'retailers-management-for-woocommerce' ) );
     }

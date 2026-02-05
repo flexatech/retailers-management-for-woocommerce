@@ -33,7 +33,7 @@ abstract class BaseRestController {
             return true;
         }
 
-        $product_id = (int) $request->get_param( 'productId' );
+        $product_id = absint( $request->get_param( 'productId' ) );
 
         // 2. Editing an existing product
         if ( $product_id ) {

@@ -8,6 +8,6 @@
 @import 'tailwindcss/preflight.css';
 @import './styles/preflight.css';
 
-.flexa-retailers-ui {
+.rmfw-retailers-ui {
   @import 'tailwindcss/utilities.css';
 }
