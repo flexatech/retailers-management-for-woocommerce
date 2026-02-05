@@ -10,7 +10,7 @@ class Helper {
 
     public static function get_js_config() {
         $config = [
-            'plugin_url' => FLEXA_RETAILERS_MANAGEMENT_PLUGIN_URL,
+            'plugin_url' => FLEXA_TECH_RETAILERS_MANAGEMENT_PLUGIN_URL,
             'rest_url'   => esc_url_raw( rest_url() ),
             'rest_nonce' => wp_create_nonce( 'wp_rest' ),
             'rest_base'  => 'retailers-management-for-woocommerce/v1',

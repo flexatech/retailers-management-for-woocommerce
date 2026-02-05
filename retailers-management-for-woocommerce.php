@@ -35,27 +35,27 @@ if ( function_exists( 'RetailersManagement\\plugin_init' ) ) {
 }
 
 
-if ( ! defined( 'FLEXA_RETAILERS_MANAGEMENT_FILE' ) ) {
-    define( 'FLEXA_RETAILERS_MANAGEMENT_FILE', __FILE__ );
+if ( ! defined( 'FLEXA_TECH_RETAILERS_MANAGEMENT_FILE' ) ) {
+    define( 'FLEXA_TECH_RETAILERS_MANAGEMENT_FILE', __FILE__ );
 }
 
-if ( ! defined( 'FLEXA_RETAILERS_MANAGEMENT_VERSION' ) ) {
-    define( 'FLEXA_RETAILERS_MANAGEMENT_VERSION', '1.0.0' );
+if ( ! defined( 'FLEXA_TECH_RETAILERS_MANAGEMENT_VERSION' ) ) {
+    define( 'FLEXA_TECH_RETAILERS_MANAGEMENT_VERSION', '1.0.0' );
 }
 
-if ( ! defined( 'FLEXA_RETAILERS_MANAGEMENT_PLUGIN_URL' ) ) {
-    define( 'FLEXA_RETAILERS_MANAGEMENT_PLUGIN_URL', plugin_dir_url( FLEXA_RETAILERS_MANAGEMENT_FILE ) );
+if ( ! defined( 'FLEXA_TECH_RETAILERS_MANAGEMENT_PLUGIN_URL' ) ) {
+    define( 'FLEXA_TECH_RETAILERS_MANAGEMENT_PLUGIN_URL', plugin_dir_url( FLEXA_TECH_RETAILERS_MANAGEMENT_FILE ) );
 }
 
-if ( ! defined( 'FLEXA_RETAILERS_MANAGEMENT_PLUGIN_DIR' ) ) {
-    define( 'FLEXA_RETAILERS_MANAGEMENT_PLUGIN_DIR', plugin_dir_path( FLEXA_RETAILERS_MANAGEMENT_FILE ) );
+if ( ! defined( 'FLEXA_TECH_RETAILERS_MANAGEMENT_PLUGIN_DIR' ) ) {
+    define( 'FLEXA_TECH_RETAILERS_MANAGEMENT_PLUGIN_DIR', plugin_dir_path( FLEXA_TECH_RETAILERS_MANAGEMENT_FILE ) );
 }
 
-if ( ! defined( 'FLEXA_RETAILERS_MANAGEMENT_BASE_NAME' ) ) {
-    define( 'FLEXA_RETAILERS_MANAGEMENT_BASE_NAME', plugin_basename( FLEXA_RETAILERS_MANAGEMENT_FILE ) );
+if ( ! defined( 'FLEXA_TECH_RETAILERS_MANAGEMENT_BASE_NAME' ) ) {
+    define( 'FLEXA_TECH_RETAILERS_MANAGEMENT_BASE_NAME', plugin_basename( FLEXA_TECH_RETAILERS_MANAGEMENT_FILE ) );
 }
 
-define( 'FLEXA_RETAILERS_MANAGEMENT_IS_DEVELOPMENT', false );
+define( 'FLEXA_TECH_RETAILERS_MANAGEMENT_IS_DEVELOPMENT', true );
 
 spl_autoload_register(
     function ( $class ) {
@@ -104,5 +104,5 @@ if ( ! wp_installing() ) {
     add_action( 'plugins_loaded', 'RetailersManagement\\plugin_init' );
 }
 
-register_activation_hook( FLEXA_RETAILERS_MANAGEMENT_FILE, [ \RetailersManagement\Engine\ActDeact::class, 'activate' ] );
-register_deactivation_hook( FLEXA_RETAILERS_MANAGEMENT_FILE, [ \RetailersManagement\Engine\ActDeact::class, 'deactivate' ] );
+register_activation_hook( FLEXA_TECH_RETAILERS_MANAGEMENT_FILE, [ \RetailersManagement\Engine\ActDeact::class, 'activate' ] );
+register_deactivation_hook( FLEXA_TECH_RETAILERS_MANAGEMENT_FILE, [ \RetailersManagement\Engine\ActDeact::class, 'deactivate' ] );

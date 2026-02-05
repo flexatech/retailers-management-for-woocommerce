@@ -21,7 +21,7 @@ class Settings {
 
         add_action( 'admin_menu', [ $this, 'admin_menu' ] );
 
-        add_filter( 'plugin_action_links_' . FLEXA_RETAILERS_MANAGEMENT_BASE_NAME, [ $this, 'add_action_links' ] );
+        add_filter( 'plugin_action_links_' . FLEXA_TECH_RETAILERS_MANAGEMENT_BASE_NAME, [ $this, 'add_action_links' ] );
 
         add_filter( 'plugin_row_meta', [ $this, 'add_document_support_links' ], 10, 2 );
 
@@ -49,7 +49,7 @@ class Settings {
     }
 
     public function add_document_support_links( $links, $file ) {
-        if ( strpos( $file, FLEXA_RETAILERS_MANAGEMENT_BASE_NAME ) !== false ) {
+        if ( strpos( $file, FLEXA_TECH_RETAILERS_MANAGEMENT_BASE_NAME ) !== false ) {
             $doc_url    = esc_url( 'https://flexa.com/support/' );
             $new_links  = [
                 'doc'     => '<a href="' . $doc_url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Docs', 'retailers-management-for-woocommerce' ) . '</a>',
@@ -100,6 +100,6 @@ class Settings {
     }
 
     public function admin_enqueue_admin_styles() {
-        wp_enqueue_style( 'retailers-management-admin-styles', FLEXA_RETAILERS_MANAGEMENT_PLUGIN_URL . 'assets/css/admin-styles.css', [], FLEXA_RETAILERS_MANAGEMENT_VERSION );
+        wp_enqueue_style( 'retailers-management-admin-styles', FLEXA_TECH_RETAILERS_MANAGEMENT_PLUGIN_URL . 'assets/css/admin-styles.css', [], FLEXA_TECH_RETAILERS_MANAGEMENT_VERSION );
     }
 }

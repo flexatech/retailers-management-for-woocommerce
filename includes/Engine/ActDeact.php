@@ -28,7 +28,7 @@ class ActDeact {
 
     public static function before_woocommerce_init() {
         if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
-            \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', FLEXA_RETAILERS_MANAGEMENT_FILE, true );
+            \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', FLEXA_TECH_RETAILERS_MANAGEMENT_FILE, true );
         }
     }
 

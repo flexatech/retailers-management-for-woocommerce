@@ -18,7 +18,7 @@ class I18n {
             $locale = is_admin() ? get_user_locale() : get_locale();
         }
         
-        $mofile = FLEXA_RETAILERS_MANAGEMENT_PLUGIN_DIR . '/languages/retailers-management-for-woocommerce-' . $locale . '.mo';
+        $mofile = FLEXA_TECH_RETAILERS_MANAGEMENT_PLUGIN_DIR . '/languages/retailers-management-for-woocommerce-' . $locale . '.mo';
         
         if ( file_exists( $mofile ) ) {
             unload_textdomain( 'retailers-management-for-woocommerce' );

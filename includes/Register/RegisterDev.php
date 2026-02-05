@@ -45,15 +45,15 @@ class RegisterDev {
     public function register_all_scripts() {
         $deps = [ 'react', 'react-dom', 'wp-hooks', 'wp-i18n' ];
 
-        wp_register_script( ScriptName::PAGE_SETTINGS, 'http://localhost:3000/main.tsx', $deps, FLEXA_RETAILERS_MANAGEMENT_VERSION, true );
-        wp_set_script_translations( ScriptName::PAGE_SETTINGS, 'retailers-management-for-woocommerce', FLEXA_RETAILERS_MANAGEMENT_PLUGIN_DIR . 'languages' );
+        wp_register_script( ScriptName::PAGE_SETTINGS, 'http://localhost:3000/main.tsx', $deps, FLEXA_TECH_RETAILERS_MANAGEMENT_VERSION, true );
+        wp_set_script_translations( ScriptName::PAGE_SETTINGS, 'retailers-management-for-woocommerce', FLEXA_TECH_RETAILERS_MANAGEMENT_PLUGIN_DIR . 'languages' );
 
-        wp_register_script( ScriptName::PAGE_PRODUCT_RETAILERS, 'http://localhost:3000/woocommerce/product-retailers.tsx', $deps, FLEXA_RETAILERS_MANAGEMENT_VERSION, true );
-        wp_set_script_translations( ScriptName::PAGE_PRODUCT_RETAILERS, 'retailers-management-for-woocommerce', FLEXA_RETAILERS_MANAGEMENT_PLUGIN_DIR . 'languages' );
+        wp_register_script( ScriptName::PAGE_PRODUCT_RETAILERS, 'http://localhost:3000/woocommerce/product-retailers.tsx', $deps, FLEXA_TECH_RETAILERS_MANAGEMENT_VERSION, true );
+        wp_set_script_translations( ScriptName::PAGE_PRODUCT_RETAILERS, 'retailers-management-for-woocommerce', FLEXA_TECH_RETAILERS_MANAGEMENT_PLUGIN_DIR . 'languages' );
 
         // Frontend script
         $frontend_deps = [ 'react', 'react-dom', 'wp-i18n' ];
-        wp_register_script( ScriptName::PAGE_PRODUCT_RETAILERS_FRONTEND, 'http://localhost:3001/product-retailers-frontend.tsx', $frontend_deps, FLEXA_RETAILERS_MANAGEMENT_VERSION, true );
-        wp_set_script_translations( ScriptName::PAGE_PRODUCT_RETAILERS_FRONTEND, 'retailers-management-for-woocommerce', FLEXA_RETAILERS_MANAGEMENT_PLUGIN_DIR . 'languages' );
+        wp_register_script( ScriptName::PAGE_PRODUCT_RETAILERS_FRONTEND, 'http://localhost:3001/product-retailers-frontend.tsx', $frontend_deps, FLEXA_TECH_RETAILERS_MANAGEMENT_VERSION, true );
+        wp_set_script_translations( ScriptName::PAGE_PRODUCT_RETAILERS_FRONTEND, 'retailers-management-for-woocommerce', FLEXA_TECH_RETAILERS_MANAGEMENT_PLUGIN_DIR . 'languages' );
     }
 }
