@@ -217,10 +217,12 @@ class ProductRetailers {
             return;
         }
 
-        // Load settings from database
+        // Load settings from database (merge with defaults so e.g. display.layoutStyle is always set)
         $settings = get_option( 'retailers_management_settings' );
         if ( ! is_array( $settings ) ) {
             $settings = Helper::get_default_settings();
+        } else {
+            $settings = array_replace_recursive( Helper::get_default_settings(), $settings );
         }
 
         // Check if retailers should be shown on products

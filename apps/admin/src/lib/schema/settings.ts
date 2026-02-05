@@ -14,7 +14,7 @@ export const settingsFormSchema = z.object({
       'below_product_details',
       'product_tab',
     ]),
-    layoutStyle: z.enum(['list', 'grid', 'modal', 'map-card']),
+    layoutStyle: z.enum(['list']),
     visibility: z.object({
       logo: z.boolean(),
       name: z.boolean(),
