@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown, Eye, Grid3X3, List, MapPin, SquareStack } from 'lucide-react';
+import { Eye, List } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
 
 import { SettingsFormData } from '@/lib/schema/settings';
@@ -8,10 +8,7 @@ import { RadioGroup } from '@/components/ui/radio-group';
 import { DisplayModeCard } from '@/components/settings/DisplayModeCard';
 
 import ButtonToggleSection from './ButtonToggleSection';
-import CardGridPreview from './previews/CardGridPreview';
 import ClassicListPreview from './previews/ClassicListPreview';
-import ModalPopupPreview from './previews/ModalPopupPreview';
-import StoreLocatorPreview from './previews/StoreLocatiorPreview';
 
 const displayModes = [
   {
@@ -20,27 +17,6 @@ const displayModes = [
     description: __('Vertical list with full details', 'retailers-management-for-woocommerce'),
     icon: <List className="size-4" />,
     preview: <ClassicListPreview />,
-  },
-  {
-    id: 'modal',
-    name: __('Modal Popup', 'retailers-management-for-woocommerce'),
-    description: __('Opens in a centered dialog', 'retailers-management-for-woocommerce'),
-    icon: <SquareStack className="size-4" />,
-    preview: <ModalPopupPreview />,
-  },
-  {
-    id: 'map-card',
-    name: __('Store Locator', 'retailers-management-for-woocommerce'),
-    description: __('Interactive map with pins', 'retailers-management-for-woocommerce'),
-    icon: <MapPin className="size-4" />,
-    preview: <StoreLocatorPreview />,
-  },
-  {
-    id: 'grid',
-    name: __('Card Grid', 'retailers-management-for-woocommerce'),
-    description: __('Modern responsive cards', 'retailers-management-for-woocommerce'),
-    icon: <Grid3X3 className="size-4" />,
-    preview: <CardGridPreview />,
   },
 ];
 

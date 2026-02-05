@@ -79,7 +79,7 @@ class Helper {
         $defaults = self::get_default_settings();
 
         $allowed_positions = [ 'after_product_price', 'after_add_to_cart_button', 'below_product_details', 'product_tab' ];
-        $allowed_layouts   = [ 'list', 'grid', 'modal', 'map-card' ];
+        $allowed_layouts   = [ 'list' ];
         $allowed_show_when = [ 'always', 'out_of_stock', 'in_stock' ];
         $visibility_keys   = [ 'logo', 'name', 'type', 'address', 'stock', 'price', 'originalPrice', 'button' ];
 
