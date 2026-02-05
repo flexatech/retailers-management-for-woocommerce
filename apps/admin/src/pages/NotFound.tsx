@@ -19,10 +19,10 @@ const NotFound = () => {
           Sorry, we couldn’t find the page you were looking for.
         </p>
         <a
-          href="/"
+          href="#/retailers"
           className="bg-primary hover:bg-primary/90 inline-block rounded-md px-6 py-2 text-sm font-medium text-white transition-colors"
         >
-          Go to Dashboard
+          Go to Retailers
         </a>
       </div>
     </div>

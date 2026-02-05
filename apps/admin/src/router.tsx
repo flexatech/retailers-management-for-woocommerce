@@ -2,17 +2,9 @@ import Retailers from '@/pages/retailers/Retailers';
 import { createHashRouter, redirect, type RouteObject } from 'react-router-dom';
 
 import AppLayout from './AppLayout';
-import Dashboard from './pages/Dashboard';
 import NotFoundPage from './pages/NotFound';
 import RetailerTypes from './pages/retailer-types/RetailerTypes';
 import Settings from './pages/settings/Settings';
-
-const proRoutes: RouteObject[] = [
-  {
-    path: 'dashboard',
-    element: <Dashboard />,
-  },
-];
 
 const baseRoutes: RouteObject[] = [
   {
@@ -47,7 +39,7 @@ export function getManagerRouter() {
       path: '/',
       element: <AppLayout />,
       errorElement: <NotFoundPage />,
-      children: [...proRoutes, ...baseRoutes],
+      children: baseRoutes,
     },
   ]);
 }
