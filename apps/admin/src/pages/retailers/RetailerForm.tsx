@@ -38,8 +38,6 @@ import {
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 
-import { AddressAutocomplete } from './AddressAutocomplete';
-
 export default function RetailerForm() {
   const params = useParams();
 
@@ -88,8 +86,7 @@ export default function RetailerForm() {
       form.reset(data);
     }
   }, [isAddingRetailer, data, form]);
-  const lat = form.watch('latitude');
-  const lng = form.watch('longitude');
+
   return (
     <FormProvider {...form}>
       <form
@@ -313,84 +310,27 @@ export default function RetailerForm() {
                   )}
                 />
 
-                {/* Location Data */}
-
+                {/* Address */}
                 <FormField
                   control={form.control}
                   name="address"
-                  render={({ field, fieldState: { error } }) => (
-                    <FormItem>
-                      <FormLabel>{__('Full Address', 'retailers-management-for-woocommerce')}</FormLabel>
+                  render={({ field: { ref, ...field }, fieldState: { error } }) => (
+                    <FormItem className="w-full">
+                      <FormLabel className="text-base-secondary space-y-2.5 text-xs font-medium">
+                        {__('Full Address', 'retailers-management-for-woocommerce')}
+                      </FormLabel>
                       <FormControl>
-                        <AddressAutocomplete
-                          // value={form.watch('address')}
-                          value={field.value}
-                          error={!!error}
-                          onSelect={({ address, lat, lng }) => {
-                            form.setValue('address', address, { shouldDirty: true });
-                            form.setValue('latitude', lat, { shouldDirty: true });
-                            form.setValue('longitude', lng, { shouldDirty: true });
-                          }}
-                          onClear={() => {
-                            form.setValue('latitude', '', { shouldDirty: true });
-                            form.setValue('longitude', '', { shouldDirty: true });
-                          }}
+                        <Input
+                          {...field}
+                          value={field.value ?? ''}
+                          placeholder={__('e.g. 123 Main St, City, State', 'retailers-management-for-woocommerce')}
+                          className={`h-9 rounded-md ${error ? 'border-destructive' : ''} focus-visible:ring-0`}
                         />
                       </FormControl>
+                      {error && <FormMessage>{error.message}</FormMessage>}
                     </FormItem>
                   )}
                 />
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  <FormField
-                    control={form.control}
-                    name="latitude"
-                    render={({ field: { ref, ...field }, fieldState: { error } }) => (
-                      <FormItem className="w-full">
-                        <FormLabel className="text-base-secondary space-y-2.5 text-xs font-medium">
-                          {__('Latitude', 'retailers-management-for-woocommerce')}
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            value={field.value ?? ''}
-                            placeholder={__('e.g. 10.762622', 'retailers-management-for-woocommerce')}
-                            className={`h-9 rounded-md ${error ? 'border-destructive' : ''} focus-visible:ring-0`}
-                          />
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="longitude"
-                    render={({ field: { ref, ...field }, fieldState: { error } }) => (
-                      <FormItem className="w-full">
-                        <FormLabel className="text-base-secondary space-y-2.5 text-xs font-medium">
-                          {__('Longitude', 'retailers-management-for-woocommerce')}
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            value={field.value ?? ''}
-                            placeholder={__('e.g. 10.762622', 'retailers-management-for-woocommerce')}
-                            className={`h-9 rounded-md ${error ? 'border-destructive' : ''} focus-visible:ring-0`}
-                          />
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                {lat && lng && (
-                  <div className="overflow-hidden rounded-lg border">
-                    <iframe
-                      key={`${lat}-${lng}`}
-                      className="h-48 w-full"
-                      loading="lazy"
-                      src={`https://www.openstreetmap.org/export/embed.html?marker=${lat},${lng}&zoom=15`}
-                    />
-                  </div>
-                )}
 
                 <FormField
                   control={form.control}
