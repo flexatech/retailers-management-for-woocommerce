@@ -59,6 +59,11 @@ export default defineConfig({
     },
   },
 
+  optimizeDeps: {
+    // WordPress globals are provided by wp.*, không cần (và đôi khi lỗi) khi pre-bundle
+    exclude: ['@wordpress/hooks', '@wordpress/i18n'],
+  },
+
   esbuild: {
     loader: 'tsx',
     jsx: 'transform',
