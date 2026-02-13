@@ -21,6 +21,7 @@ export const retailerSchema = z.object({
   address: z.string().optional(),
   latitude: z.string().optional(),
   longitude: z.string().optional(),
+  products: z.number().optional(),
 });
 
 export type RetailersListValues = z.infer<typeof retailerSchema>;

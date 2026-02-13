@@ -4,6 +4,7 @@ namespace RetailersManagement\Controllers;
 use RetailersManagement\Utils\SingletonTrait;
 use RetailersManagement\Helpers\RetailerHelper;
 use RetailersManagement\Helpers\RetailerTypeHelper;
+use RetailersManagement\Helpers\ProductRetailersHelper;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -151,8 +152,62 @@ class RetailersRestController extends BaseRestController {
          */
         $query = new \WP_Query( $args );
 
+        /**
+         * Build product counts per retailer (for list view stats).
+         */
+        $product_counts = [];
+
+        if ( ! empty( $query->posts ) ) {
+            $retailer_ids = wp_list_pluck( $query->posts, 'ID' );
+
+            // Default all counts to 0.
+            $product_counts = array_fill_keys( $retailer_ids, 0 );
+
+            // Find all products that have any retailers assigned.
+            $product_query = new \WP_Query(
+                [
+                    'post_type'      => 'product',
+                    'post_status'    => 'publish',
+                    'posts_per_page' => -1,
+                    'meta_query'     => [
+                        [
+                            'key'     => ProductRetailersHelper::PRODUCT_RETAILERS_META_KEY,
+                            'compare' => 'EXISTS',
+                        ],
+                    ],
+                    'fields'         => 'ids',
+                ]
+            );
+
+            if ( ! empty( $product_query->posts ) ) {
+                foreach ( $product_query->posts as $product_id ) {
+                    $retailers_meta = get_post_meta(
+                        $product_id,
+                        ProductRetailersHelper::PRODUCT_RETAILERS_META_KEY,
+                        true
+                    );
+
+                    if ( ! is_array( $retailers_meta ) ) {
+                        continue;
+                    }
+
+                    foreach ( $retailers_meta as $item ) {
+                        if ( ! is_array( $item ) || empty( $item['retailerId'] ) ) {
+                            continue;
+                        }
+
+                        $retailer_id = absint( $item['retailerId'] );
+
+                        if ( $retailer_id && isset( $product_counts[ $retailer_id ] ) ) {
+                            $product_counts[ $retailer_id ]++;
+                        }
+                    }
+                }
+            }
+        }
+
         $data = array_map(
-            function ( $post ) {
+            function ( $post ) use ( $product_counts ) {
 
                 $type_terms = wp_get_post_terms(
                     $post->ID,
@@ -212,6 +267,7 @@ class RetailersRestController extends BaseRestController {
                         RetailerHelper::RETAILER_META_LONGITUDE,
                         true
                     ),
+                    'products'     => isset( $product_counts[ $post->ID ] ) ? (int) $product_counts[ $post->ID ] : 0,
                 ];
             },
             $query->posts
