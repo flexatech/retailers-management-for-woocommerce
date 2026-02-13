@@ -50,7 +50,7 @@ class Settings {
 
     public function add_document_support_links( $links, $file ) {
         if ( strpos( $file, FLEXA_TECH_RETAILERS_MANAGEMENT_BASE_NAME ) !== false ) {
-            $doc_url    = esc_url( 'https://flexa.com/support/' );
+            $doc_url    = esc_url( 'https://flexacommerce.com/contact' );
             $new_links  = [
                 'doc'     => '<a href="' . $doc_url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Docs', 'retailers-management-for-woocommerce' ) . '</a>',
                 'support' => '<a href="' . $doc_url . '" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__( 'Visit community forums', 'retailers-management-for-woocommerce' ) . '">' . esc_html__( 'Support', 'retailers-management-for-woocommerce' ) . '</a>',
