@@ -22,12 +22,14 @@ export const retailerSchema = z.object({
   address: z.string().optional(),
   latitude: z.string().optional(),
   longitude: z.string().optional(),
+  products: z.number().optional(),
 });
 
 export const createRetailerSchema = retailerSchema.omit({
   id: true,
   slug: true,
   type_info: true,
+  products: true,
 });
 
 export type RetailerFormValues =

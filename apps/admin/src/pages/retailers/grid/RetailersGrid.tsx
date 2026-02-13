@@ -64,7 +64,7 @@ export default function RetailersGrid({
                 className="flex cursor-pointer items-center gap-3"
                 onClick={() => navigate(`/retailers/edit/${retailer.id}`)}
               >
-                <div className="from-primary/10 to-primary/5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br text-2xl">
+                <div className="from-primary/10 to-primary/5 flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br text-2xl">
                   {retailer.logo ? (
                     <img src={retailer.logo} alt={retailer.name} className="size-6" />
                   ) : (
@@ -136,7 +136,15 @@ export default function RetailersGrid({
             <div className="bg-muted/30 rounded-lg">
               <div className="bg-muted-foreground/10 rounded-md px-3 py-2">
                 <p className="text-muted-foreground text-xs tracking-wide uppercase">{__('Products', 'retailers-management-for-woocommerce')}</p>
-                <p className="text-foreground text-lg font-semibold">{retailer.products ?? 0}</p>
+                <p className="text-foreground text-lg font-semibold">
+                  {retailer.products ?? 0}
+                </p>
+              </div>
+              <div className="bg-primary/10 rounded-md px-3 py-2">
+                <p className="text-muted-foreground text-xs tracking-wide uppercase">
+                  {__('Total Clicks', 'retailers-management-for-woocommerce')}
+                </p>
+                <p className="text-foreground text-lg font-semibold">0</p>
               </div>
             </div>
           </CardContent>
