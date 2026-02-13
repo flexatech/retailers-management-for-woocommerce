@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { motion } from 'framer-motion';
-import { ChevronRight, Layout, SettingsIcon, Zap } from 'lucide-react';
+import { ChevronRight, HelpCircle, Layout, SettingsIcon, Zap } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
@@ -22,6 +22,12 @@ export const settingsTabs = [
     label: __('Advanced', 'retailers-management-for-woocommerce'),
     icon: Zap,
     description: __('Extended functionality', 'retailers-management-for-woocommerce'),
+  },
+  {
+    id: 'support',
+    label: __('Support', 'retailers-management-for-woocommerce'),
+    icon: HelpCircle,
+    description: __('Contact & custom development', 'retailers-management-for-woocommerce'),
   },
 ];
 

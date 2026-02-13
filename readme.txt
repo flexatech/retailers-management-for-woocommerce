@@ -91,7 +91,7 @@ No. This plugin does not send data to external services.
 == Upgrade Notice ==
 
 = 1.0.5 =
-Code cleanup release: Dashboard and unused display modes removed; only Classic List display is used.
+Fix: Do not display the number of products per retailer in the admin panel.
 
 = 1.0.0 =
 Initial release.
