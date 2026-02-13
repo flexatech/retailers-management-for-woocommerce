@@ -20,6 +20,7 @@ import SettingsNavigation from './SettingsNavigation';
 import AdvancedTab from './tabs/AdvancedTab';
 import DisplayTab from './tabs/DisplayTab';
 import GeneralTab from './tabs/GeneralTab';
+import SupportTab from './tabs/SupportTab';
 
 export default function Settings() {
   const { data: settings } = useSettingsQuery();
@@ -75,6 +76,9 @@ export default function Settings() {
 
                   {/* Advanced Tab */}
                   {activeTab === 'advanced' && <AdvancedTab />}
+
+                  {/* Support Tab */}
+                  {activeTab === 'support' && <SupportTab />}
                 </AnimatePresence>
               </div>
             </div>
