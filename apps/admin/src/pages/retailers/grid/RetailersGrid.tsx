@@ -133,7 +133,7 @@ export default function RetailersGrid({
             </div>
 
             {/* Stats */}
-            <div className="bg-muted/30 grid grid-cols-2 gap-4 rounded-lg">
+            <div className="bg-muted/30 rounded-lg">
               <div className="bg-muted-foreground/10 rounded-md px-3 py-2">
                 <p className="text-muted-foreground text-xs tracking-wide uppercase">{__('Products', 'retailers-management-for-woocommerce')}</p>
                 <p className="text-foreground text-lg font-semibold">

@@ -1,10 +1,10 @@
 === Retailers Management for WooCommerce ===
-Contributors: flexatech
+Contributors: FlexaTech
 Tags: woocommerce, retailers, stores, dealers, product retailers
 Requires at least: 4.7
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,9 @@ No. This plugin does not send data to external services.
 
 == Changelog ==
 
+= 1.0.5 =
+* Fix: Do not display the number of products per retailer in the admin panel.
+
 = 1.0.4 =
 * Removed: OpenStreetMap address autocomplete and map position display in admin; address is now a plain text field
 
@@ -87,7 +90,7 @@ No. This plugin does not send data to external services.
 
 == Upgrade Notice ==
 
-= 1.0.4 =
+= 1.0.5 =
 Code cleanup release: Dashboard and unused display modes removed; only Classic List display is used.
 
 = 1.0.0 =

@@ -128,13 +128,6 @@ export const RetailersColumns = (actions: ColumnActions): ColumnDef<RetailersLis
     enableHiding: false,
   },
   {
-    accessorKey: 'clicks',
-    header: 'Clicks',
-    cell: () => <span className="text-foreground text-sm font-medium">0</span>,
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
     accessorKey: 'status',
     header: 'Status',
     cell: ({ row }) => {
