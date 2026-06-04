@@ -2,9 +2,9 @@
 Contributors: FlexaTech
 Tags: woocommerce, retailers, stores, dealers, product retailers
 Requires at least: 4.7
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,12 @@ No. This plugin does not send data to external services.
 6. Live preview in admin
 
 == Changelog ==
+
+= 1.0.6 =
+* Tested up to WordPress 7.0
+* Security: Added direct-access (ABSPATH) guard to all plugin PHP files
+* Fixed: Development-only assets no longer included in the production build
+* Improved: Moved the admin menu below Settings instead of competing with core menu items
 
 = 1.0.5 =
 * Fix: Do not display the number of products per retailer in the admin panel.

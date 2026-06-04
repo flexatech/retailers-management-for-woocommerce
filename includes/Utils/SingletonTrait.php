@@ -1,6 +1,8 @@
 <?php
 namespace RetailersManagement\Utils;
 
+defined( 'ABSPATH' ) || exit;
+
 trait SingletonTrait {
     protected static $instance = null;
 

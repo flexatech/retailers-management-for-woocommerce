@@ -1,6 +1,8 @@
 <?php
 namespace RetailersManagement\Register;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Script Name Constants
  */

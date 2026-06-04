@@ -1,6 +1,8 @@
 <?php
 namespace RetailersManagement\Helpers;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Helper Class
  */

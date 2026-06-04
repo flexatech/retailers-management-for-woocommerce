@@ -1,6 +1,8 @@
 <?php
 namespace RetailersManagement\Engine;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Activate and deactive method of the plugin and relates.
  */
