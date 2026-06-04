@@ -1,6 +1,8 @@
 <?php
 namespace RetailersManagement;
 
+defined( 'ABSPATH' ) || exit;
+
 use RetailersManagement\Utils\SingletonTrait;
 
 /**

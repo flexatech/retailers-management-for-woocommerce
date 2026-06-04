@@ -47,7 +47,7 @@ fi
 # 5) Remove development-only code
 #
 sed -i "" "/FLEXA_TECH_RETAILERS_MANAGEMENT_IS_DEVELOPMENT/d" "$DEST_PATH/retailers-management-for-woocommerce.php"
-rm -rf "$DEST_PATH/includes/Engine/Register/RegisterDev.php"
+rm -rf "$DEST_PATH/includes/Register/RegisterDev.php"
 
 #
 # 6) Generate ZIP

@@ -70,7 +70,7 @@ class Settings {
             'retailers-management-for-woocommerce',
             [ $this, 'submenu_page_callback' ],
             'dashicons-store',
-            60
+            80
         );
     }
 
