@@ -60,6 +60,7 @@ class RetailerTypeHelper {
         $query = new \WP_Query(
             [
                 'post_type'      => RetailerHelper::RETAILER_POST_TYPE,
+                // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Counting retailers by type taxonomy is required here.
                 'tax_query'      => [
                     [
                         'taxonomy' => self::RETAILER_TYPE_TAXONOMY,

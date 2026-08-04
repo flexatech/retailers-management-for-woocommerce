@@ -1,10 +1,10 @@
 === Retailers Management for WooCommerce ===
 Contributors: FlexaTech
 Tags: woocommerce, retailers, stores, dealers, product retailers
-Requires at least: 4.7
+Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,12 @@ With this plugin, you can:
 * Manage retailers directly from the WordPress admin
 
 This plugin is designed to be lightweight, secure, and fully compatible with WooCommerce.
+
+This plugin uses modern JavaScript tooling to build its admin and frontend assets.
+
+The complete, human-readable source code for all JavaScript and CSS files included in this plugin is publicly available and maintained at:
+
+https://github.com/flexatech/retailers-management-for-woocommerce
 
 == Installation ==
 
@@ -55,6 +61,10 @@ No. This plugin does not send data to external services.
 6. Live preview in admin
 
 == Changelog ==
+
+= 1.0.7 =
+* Changed: Raised minimum required WordPress version to 5.0
+* Removed: Support tab from the admin Settings screen
 
 = 1.0.6 =
 * Tested up to WordPress 7.0

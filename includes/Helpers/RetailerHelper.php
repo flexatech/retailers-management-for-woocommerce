@@ -33,6 +33,7 @@ class RetailerHelper {
         $args  = [
             'post_type'   => self::RETAILER_POST_TYPE,
             'post_status' => 'publish',
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Filtering retailers by active status meta is required here.
             'meta_query'  => [
                 [
                     'key'     => self::RETAILER_META_STATUS,

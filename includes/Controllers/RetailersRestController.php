@@ -138,6 +138,7 @@ class RetailersRestController extends BaseRestController {
         }
 
         if ( 'all' !== $status ) {
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Filtering retailers by status meta is required here.
             $args['meta_query'] = [
                 [
                     'key'     => RetailerHelper::RETAILER_META_STATUS,
@@ -169,6 +170,7 @@ class RetailersRestController extends BaseRestController {
                     'post_type'      => 'product',
                     'post_status'    => 'publish',
                     'posts_per_page' => -1,
+                    // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Counting products with assigned retailers requires this meta lookup.
                     'meta_query'     => [
                         [
                             'key'     => ProductRetailersHelper::PRODUCT_RETAILERS_META_KEY,
