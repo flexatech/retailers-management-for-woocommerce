@@ -53,11 +53,17 @@ class CustomPostType {
                 ],
                 // Writes require manage_options; reads stay public so the
                 // front-end product display can render published retailers.
+                //
+                // Only PRIMITIVE caps are remapped here. The meta caps
+                // edit_post/delete_post/read_post must NOT be set to
+                // manage_options: with map_meta_cap => true, WordPress registers
+                // their values in the global $post_type_meta_caps, which would
+                // turn manage_options itself into a meta cap and make every
+                // current_user_can( 'manage_options' ) resolve to do_not_allow
+                // site-wide. WP maps the meta caps to these primitives for us.
                 'capability_type'     => 'post',
                 'map_meta_cap'        => true,
                 'capabilities'        => [
-                    'edit_post'              => 'manage_options',
-                    'delete_post'            => 'manage_options',
                     'edit_posts'             => 'manage_options',
                     'edit_others_posts'      => 'manage_options',
                     'edit_published_posts'   => 'manage_options',

@@ -9,9 +9,9 @@ defined( 'ABSPATH' ) || exit;
 class RetailerTypeHelper {
 
     public const RETAILER_TYPE_TAXONOMY      = 'retailer_type';
-    public const RETAILER_TYPE_META_STATUS   = 'retailer_type_status';
-    public const RETAILER_TYPE_META_COLOR    = 'retailer_type_color';
-    public const RETAILER_TYPE_META_ICON_URL = 'retailer_type_icon_url';
+    public const RETAILER_TYPE_META_STATUS   = 'rmfw_retailer_type_status';
+    public const RETAILER_TYPE_META_COLOR    = 'rmfw_retailer_type_color';
+    public const RETAILER_TYPE_META_ICON_URL = 'rmfw_retailer_type_icon_url';
     public const RETAILER_TYPE_ALL_STATUS    = 'all';
     public const RETAILER_TYPE_PER_PAGE      = 9;
     public const RETAILER_TYPE_MAX_PER_PAGE  = 100;

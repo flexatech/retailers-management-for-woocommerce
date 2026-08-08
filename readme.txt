@@ -4,7 +4,7 @@ Tags: woocommerce, retailers, stores, dealers, product retailers
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,6 +69,10 @@ No. This plugin does not send data to, or load assets from, any external service
 6. Live preview in admin
 
 == Changelog ==
+
+= 1.0.9 =
+* Fixed: Administrators were blocked from the Retailers admin page and other manage_options screens with "Sorry, you are not allowed to access this page." The retailer post type no longer remaps the edit_post/delete_post meta capabilities to manage_options, which had inadvertently turned manage_options into a meta capability site-wide. Admin-only access to retailer data is unchanged.
+* Security: Prefixed the retailer type term-meta keys (status, color, icon) to avoid collisions with other plugins; a one-time migration copies existing data to the new keys automatically on update
 
 = 1.0.8 =
 * Security: Retailer contact details (email, phone) and precise coordinates are no longer exposed in the storefront page source; only the fields shown on the product page are output, and only for retailers assigned to that product
