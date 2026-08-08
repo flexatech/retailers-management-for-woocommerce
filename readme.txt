@@ -4,7 +4,7 @@ Tags: woocommerce, retailers, stores, dealers, product retailers
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,14 @@ The complete, human-readable source code for all JavaScript and CSS files includ
 
 https://github.com/flexatech/retailers-management-for-woocommerce
 
+== External services ==
+
+This plugin does **not** connect to, send data to, or load assets from any external/third-party service. Everything runs on your own site:
+
+* All admin and frontend requests go only to your site's own WordPress REST API (via `rest_url()`), authenticated with a WordPress nonce. No data ever leaves your server.
+* No third-party fonts, maps, tile servers, CDNs, analytics, or tracking scripts are used. All JavaScript and CSS are bundled and served locally from this plugin.
+* The plugin bundles several open-source JavaScript libraries into its compiled assets. These run entirely in the browser on your site and make no outbound network calls. The complete, human-readable source is available at https://github.com/flexatech/retailers-management-for-woocommerce
+
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/retailers-management-for-woocommerce` directory, or install the plugin through the WordPress Plugins screen.
@@ -49,7 +57,7 @@ No. Deactivating the plugin will not remove any data.
 Yes. The plugin is compatible with PHP 8.0 and newer versions.
 
 = Does this plugin use any third-party services? =
-No. This plugin does not send data to external services.
+No. This plugin does not send data to, or load assets from, any external service. All requests stay on your own site's REST API and all scripts/styles are bundled locally. See the "External services" section above for details.
 
 == Screenshots ==
 
@@ -61,6 +69,11 @@ No. This plugin does not send data to external services.
 6. Live preview in admin
 
 == Changelog ==
+
+= 1.0.8 =
+* Security: Retailer contact details (email, phone) and precise coordinates are no longer exposed in the storefront page source; only the fields shown on the product page are output, and only for retailers assigned to that product
+* Security: Retailer records and retailer types can now be managed only by administrators and are no longer editable through the core REST API or classic post UI
+* Security: Prefixed all retailer post-meta keys to avoid collisions with other plugins; a one-time migration copies existing data to the new keys automatically on update
 
 = 1.0.7 =
 * Changed: Raised minimum required WordPress version to 5.0

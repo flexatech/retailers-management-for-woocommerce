@@ -33,21 +33,42 @@ class CustomPostType {
                     'view_item'     => __( 'View Retailer', 'retailers-management-for-woocommerce' ),
                     'search_items'  => __( 'Search Retailers', 'retailers-management-for-woocommerce' ),
                 ],
-                'public'          => true,
-                'has_archive'     => true,
-                'rewrite'         => [ 'slug' => 'retailers' ],
-                'show_in_rest'    => true,
-                'rest_base'       => 'retailers',
-                'menu_icon'       => 'dashicons-store',
-                'supports'        => [
+                // Retailers are managed exclusively through this plugin's own
+                // manage_options-gated REST routes and admin app. Keep the post
+                // type internal so it is NOT exposed/editable via core wp/v2 or
+                // the classic post UI (which would let edit_posts-level users
+                // bypass the manage_options gate).
+                'public'              => false,
+                'publicly_queryable'  => false,
+                'exclude_from_search' => true,
+                'has_archive'         => false,
+                'rewrite'             => false,
+                'show_in_rest'        => false,
+                'menu_icon'           => 'dashicons-store',
+                'supports'            => [
                     'title',
                     'editor',
                     'thumbnail',
                     'excerpt',
                 ],
-                'capability_type' => 'post',
-                'show_ui'         => true,
-                'show_in_menu'    => false,
+                // Writes require manage_options; reads stay public so the
+                // front-end product display can render published retailers.
+                'capability_type'     => 'post',
+                'map_meta_cap'        => true,
+                'capabilities'        => [
+                    'edit_post'              => 'manage_options',
+                    'delete_post'            => 'manage_options',
+                    'edit_posts'             => 'manage_options',
+                    'edit_others_posts'      => 'manage_options',
+                    'edit_published_posts'   => 'manage_options',
+                    'publish_posts'          => 'manage_options',
+                    'delete_posts'           => 'manage_options',
+                    'delete_others_posts'    => 'manage_options',
+                    'delete_published_posts' => 'manage_options',
+                    'create_posts'           => 'manage_options',
+                ],
+                'show_ui'             => false,
+                'show_in_menu'        => false,
             ]
         );
     }

@@ -3,7 +3,7 @@
  * Plugin Name:       Retailers Management for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/retailers-management-for-woocommerce
  * Description:       Easily manage retailers, assign them to products, and display retailer information directly on WooCommerce product pages with this plugin.
- * Version:           1.0.7
+ * Version:           1.0.8
  * Author:            FlexaTech
  * Author URI:        https://profiles.wordpress.org/flexatech/
  * Text Domain:       retailers-management-for-woocommerce
@@ -40,7 +40,7 @@ if ( ! defined( 'FLEXA_TECH_RETAILERS_MANAGEMENT_FILE' ) ) {
 }
 
 if ( ! defined( 'FLEXA_TECH_RETAILERS_MANAGEMENT_VERSION' ) ) {
-    define( 'FLEXA_TECH_RETAILERS_MANAGEMENT_VERSION', '1.0.7' );
+    define( 'FLEXA_TECH_RETAILERS_MANAGEMENT_VERSION', '1.0.8' );
 }
 
 if ( ! defined( 'FLEXA_TECH_RETAILERS_MANAGEMENT_PLUGIN_URL' ) ) {
@@ -87,6 +87,10 @@ spl_autoload_register(
 
 if ( ! function_exists( 'RetailersManagement\\plugin_init' ) ) {
     function plugin_init() {
+
+        // Run one-time data migrations early, independent of WooCommerce, so an
+        // update is reconciled even if WC is temporarily inactive.
+        \RetailersManagement\Engine\Migrations::get_instance();
 
         if ( ! function_exists( 'WC' ) ) {
             add_action( 'admin_notices', [ \RetailersManagement\Engine\ActDeact::class, 'install_woocommerce_admin_notice' ] );

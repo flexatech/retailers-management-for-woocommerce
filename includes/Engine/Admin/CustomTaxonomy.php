@@ -26,11 +26,20 @@ class CustomTaxonomy {
             RetailerTypeHelper::RETAILER_TYPE_TAXONOMY,
             [ RetailerHelper::RETAILER_POST_TYPE ],
             [
+                // Managed only through this plugin's manage_options-gated REST
+                // routes — keep it out of core wp/v2 and restrict term writes to
+                // administrators so lower-privilege roles can't manage types.
                 'label'        => __( 'Retailer Types', 'retailers-management-for-woocommerce' ),
-                'public'       => true,
+                'public'       => false,
                 'show_ui'      => false,
-                'show_in_rest' => true,
+                'show_in_rest' => false,
                 'hierarchical' => false,
+                'capabilities' => [
+                    'manage_terms' => 'manage_options',
+                    'edit_terms'   => 'manage_options',
+                    'delete_terms' => 'manage_options',
+                    'assign_terms' => 'manage_options',
+                ],
             ]
         );
 
@@ -42,7 +51,7 @@ class CustomTaxonomy {
                 'type'         => 'boolean',
                 'single'       => true,
                 'default'      => true,
-                'show_in_rest' => true,
+                'show_in_rest' => false,
             ]
         );
 
@@ -52,7 +61,7 @@ class CustomTaxonomy {
             [
                 'type'         => 'string',
                 'single'       => true,
-                'show_in_rest' => true,
+                'show_in_rest' => false,
             ]
         );
 
@@ -62,7 +71,7 @@ class CustomTaxonomy {
             [
                 'type'         => 'string',
                 'single'       => true,
-                'show_in_rest' => true,
+                'show_in_rest' => false,
             ]
         );
     }

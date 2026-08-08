@@ -12,16 +12,16 @@ class RetailerHelper {
     public const RETAILER_ALL_STATUS         = 'all';
     public const RETAILER_PER_PAGE           = 10;
     public const RETAILER_MAX_PER_PAGE       = 100;
-    public const RETAILER_META_TYPE          = 'type';
-    public const RETAILER_META_DESCRIPTION   = 'description';
-    public const RETAILER_META_STATUS        = 'status';
-    public const RETAILER_META_LOGO          = 'logo';
-    public const RETAILER_META_ECOMMERCE_URL = 'ecommerce_url';
-    public const RETAILER_META_PHONE         = 'phone';
-    public const RETAILER_META_EMAIL         = 'email';
-    public const RETAILER_META_ADDRESS       = 'address';
-    public const RETAILER_META_LATITUDE      = 'latitude';
-    public const RETAILER_META_LONGITUDE     = 'longitude';
+    public const RETAILER_META_TYPE          = 'rmfw_type';
+    public const RETAILER_META_DESCRIPTION   = 'rmfw_description';
+    public const RETAILER_META_STATUS        = 'rmfw_status';
+    public const RETAILER_META_LOGO          = 'rmfw_logo';
+    public const RETAILER_META_ECOMMERCE_URL = 'rmfw_ecommerce_url';
+    public const RETAILER_META_PHONE         = 'rmfw_phone';
+    public const RETAILER_META_EMAIL         = 'rmfw_email';
+    public const RETAILER_META_ADDRESS       = 'rmfw_address';
+    public const RETAILER_META_LATITUDE      = 'rmfw_latitude';
+    public const RETAILER_META_LONGITUDE     = 'rmfw_longitude';
     protected function __construct() {}
 
     /*

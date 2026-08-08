@@ -241,11 +241,37 @@ class ProductRetailers {
             return;
         }
 
+        // Only expose the retailers actually assigned to THIS product, and only
+        // the fields the public frontend renders. Never ship retailer contact
+        // PII (email, phone) or precise coordinates into the public page source.
+        $assigned_ids = [];
+        foreach ( $product_retailers as $assigned ) {
+            if ( is_array( $assigned ) && ! empty( $assigned['retailerId'] ) ) {
+                $assigned_ids[] = absint( $assigned['retailerId'] );
+            }
+        }
+        $assigned_ids = array_values( array_unique( array_filter( $assigned_ids ) ) );
+
+        $public_fields    = [ 'id', 'name', 'slug', 'type', 'type_info', 'logo', 'ecommerceUrl', 'address' ];
+        $active_retailers = array_values(
+            array_map(
+                static function ( $retailer ) use ( $public_fields ) {
+                    return array_intersect_key( $retailer, array_flip( $public_fields ) );
+                },
+                array_filter(
+                    RetailerHelper::get_all_retailers_by_active_status(),
+                    static function ( $retailer ) use ( $assigned_ids ) {
+                        return isset( $retailer['id'] ) && in_array( (int) $retailer['id'], $assigned_ids, true );
+                    }
+                )
+            )
+        );
+
         $config                      = Helper::get_js_config();
         $config['product_retailers'] = $product_retailers;
-        $config['active_retailers']  = RetailerHelper::get_all_retailers_by_active_status();
-        $config['settings'] = $settings;
-        
+        $config['active_retailers']  = $active_retailers;
+        $config['settings']          = $settings;
+
         wp_localize_script(
             ScriptName::PAGE_PRODUCT_RETAILERS_FRONTEND,
             'retailersManagement',
