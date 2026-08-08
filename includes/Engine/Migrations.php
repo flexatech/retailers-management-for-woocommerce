@@ -73,7 +73,6 @@ class Migrations {
                 'post_status'      => 'any',
                 'numberposts'      => -1,
                 'fields'           => 'ids',
-                'suppress_filters' => true,
                 'no_found_rows'    => true,
             ]
         );
